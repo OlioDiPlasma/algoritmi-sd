@@ -3,6 +3,8 @@ Repo 2025 per passare il corso di Algoritmi e Strutture Dati del Politecnico di 
 
 
 ### QUA SOTTO RIPASSO MARKDOWN
+https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#line-breaks
+https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions
 
 git add .
 git commit -m "Messaggio"
@@ -39,7 +41,7 @@ This sentence uses    $` and `$ delimiters to show math inline: $`\sqrt{3x-1}+(1
    1. Sottosezione
 
 ### PER CODICI
-```c #include <stdio.h> int main() { printf("Hello, world!\n"); return 0; } ``` 
+``` #include <stdio.h> int main() { printf("Hello, world!\n"); return 0; } ``` 
 
 
 ### TABELLE
