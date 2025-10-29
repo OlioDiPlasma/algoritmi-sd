@@ -64,3 +64,22 @@ This sentence uses    $` and `$ delimiters to show math inline: $`\sqrt{3x-1}+(1
 
 ### DIVISORI
 ---
+
+
+
+
+# 01 — Ricorsione e paradigma divide et impera
+
+## 1.1 Parte Teorica
+### 1.1.1 Ricorsione
+Una 
+
+
+
+## 1.1 Spiegazione Esercizi
+In questa sezione ci saranno esercizi per capire i concetti teorici applicati, l'ideale è mettere a sinistra questo testo e a destra il file aperto con la soluzione
+
+### 1.1.1a Esercizio: Ricorsione e Condizione di Terminazione (Par. 1 & 2)  `es01.c`
+Scr
+### 1.1.1b Spiegazione dell'esercizio
+- Ri 
