@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "c:/Users/megac/Desktop/Laboratori/Algoritmi/Lab01",
+      "program": "c:/Users/megac/Desktop/Laboratori/Algoritmi/Lab01/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

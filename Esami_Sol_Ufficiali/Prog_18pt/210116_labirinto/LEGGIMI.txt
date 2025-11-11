@@ -1,0 +1,2 @@
+La soluzione qui proposta fa riferimento a una versione estesa del testo, in cui i tunnel sono caratterizzati anche dalla potenziale presenza di porte chiuse, oltre che dalla presenza di trappole. 
+In presenza di porte chiuse, è necessario disporre di (almeno) un chiavistello (lockpick) e consumarlo per poter attraversare con successo il tunnel. In caso contrario, quello specifico arco non risulta percorribile.
