@@ -2,6 +2,7 @@
 **Commento** 
 Questa parte si concentra su alcuni algoritmi importanti per l'orale
 
+## Argomenti
 
 1. Codifica di Huffman (Huffman.c)
 È un esempio fondamentale di algoritmo greedy che utilizza una coda con priorità (min-heap) per costruire un albero di codici.
