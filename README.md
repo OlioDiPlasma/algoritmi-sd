@@ -15,7 +15,7 @@ Struttura :
 -   *2023-07-02*
 [teoria](Esami/Testi/2023/2023_07_02/Teoria) | [12 pt](Esami/Testi/2023/2023_07_02/12pt) | [18 pt](Esami/Testi/2023/2023_07_02/18pt) | [video](link)
 -   *2023-30-06*
-[teoria](Esami\Testi\2023\2023_30_06\Teoria\2023_30_06_sol.pdf) | [12 pt](Esami\Testi\2023\2023_30_06\12pt) | [18 pt](Esami\Testi\2023\2023_30_06\18pt) | [video](link)
+[teoria](Esami/Testi/2023/2023_30_06/Teoria/2023_30_06_sol.pdf) | [12 pt](Esami/Testi/2023/2023_30_06/12pt) | [18 pt](Esami/Testi/2023/2023_30_06/18pt) | [video](link)
 
 
 
