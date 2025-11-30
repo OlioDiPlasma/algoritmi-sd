@@ -21,4 +21,5 @@ Il codice è organizzato in 2 unità principali più il driver di test:
 
 **Per compilare il progetto (assicurarsi di essere nella cartella corretta):**
 gcc -Wall -g -o tester main.c puzzle.c
+
 .\tester.exe
