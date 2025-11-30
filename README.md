@@ -17,5 +17,5 @@ Struttura :
 -   *2023-30-06*
 [teoria](Esami/Testi/2023/2023_30_06/Teoria/2023_30_06_sol.pdf) | [12 pt](Esami/Testi/2023/2023_30_06/12pt) | [18 pt](Esami/Testi/2023/2023_30_06/18pt) | [video](link)
 
-
+s
 
