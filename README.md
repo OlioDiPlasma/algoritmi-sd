@@ -13,6 +13,6 @@ Struttura :
 
 **Lista esami Svolti al momento**
 *2023-07-02*
-[teoria](Esami\Testi\2023\2023_07_02\Teoria) | [12 pt](Esami\Testi\2023\2023_07_02\12pt) | [18 pt](C:\Users\megac\Desktop\algoritmi-sd\Esami\Testi\2023\2023_07_02\18pt) | [video](link)
+[teoria](Esami/Testi/2023/2023_07_02/Teoria) | [12 pt](Esami/Testi/2023/2023_07_02/12pt) | [18 pt](Esami/Testi/2023/2023_07_02/18pt) | [video](link)
 
 
