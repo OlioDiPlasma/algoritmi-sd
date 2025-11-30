@@ -1,4 +1,0 @@
-gcc -Wall -g -o gioco main.c modello.c solutore.c
-
-.\gioco.exe 5 grid.txt bonus.txt
-// 3 lunghezza buffer
