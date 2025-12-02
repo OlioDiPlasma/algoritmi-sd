@@ -89,7 +89,7 @@ static bool dfs_path(Game *g, int r, int c, int start_r, int start_c, bool **vis
     }
 
     /* Vettori direzione per esplorare i vicini (Nord, Sud, Ovest, Est) */
-    int dr[] = {-1, 1, 0, 0}; 
+    int dr[] = {-1, 1, 0, 0}; //convenzione VETTORI DI DIREZIONE
     int dc[] = {0, 0, -1, 1};
     char dirs[] = {'N', 'S', 'W', 'E'};
 
@@ -189,6 +189,8 @@ void free_game(Game *g) {
     free(g);
 }
 
+
+//Print grid di test
 void print_grid(Game *g) {
     for(int i=0; i<g->N; i++) {
         for(int j=0; j<g->N; j++) {
@@ -207,45 +209,45 @@ void print_grid(Game *g) {
  * Spostare le tessere riempiendo i buchi.
  *
  * CONCETTI CHIAVE - ORDINE DI ITERAZIONE:
- * 
- * Immagina di dover spostare una fila di macchine verso un semaforo verde.
- * - Se muovo verso l'ALTO (U): Devo partire dalla macchina più in alto e scendere.
- * Se partissi dal basso, potrei spostare una tessera in un buco, e poi rispostarla
- * subito dopo nello stesso ciclo, facendole fare 2 passi invece di 1.
- * - Se muovo verso il BASSO (D): Devo partire dal basso e risalire.
- * ======================================================================================
+ * Per rispettare il movimento "Simultaneo" (e ottenere R U U come da esempio),
+ * dobbiamo evitare che un buco appena creato venga riempito nello stesso turno.
+ * * QUINDI:
+ * - Se vado SU (il buco è sopra), parto dal BASSO. Chi sta sotto trova il muro (la tessera sopra non si è ancora mossa "nel passato").
+ * - Se vado GIÙ (il buco è sotto), parto dall'ALTO.
  */
 bool apply_move(Game *g, char direction) {
     int moved = 0;
     int N = g->N;
 
     if (direction == 'U') { 
-        /* Direzione UP: Itero da riga 1 a N. Controllo se sopra (i-1) c'è un buco. */
-        for (int i = 1; i < N; i++) 
+        /* PRIMA: for (int i = 1; i < N; i++)  <-- Sbagliato (Effetto valanga) */
+        /* ORA: Parto dal basso, così muovo solo chi aveva DAVVERO spazio libero all'inizio */
+        for (int i = N - 1; i > 0; i--) 
             for (int j = 0; j < N; j++) 
                 if (!g->grid[i][j].is_hole && g->grid[i-1][j].is_hole) {
                     swap_tiles(&g->grid[i][j], &g->grid[i-1][j]); 
                     moved++;
                 }
     } else if (direction == 'D') {
-        /* Direzione DOWN: Itero INVERSAMENTE da N-2 a 0. Controllo se sotto (i+1) c'è un buco. */
-        for (int i = N - 2; i >= 0; i--) 
+        /* PRIMA: for (int i = N - 2; i >= 0; i--) */
+        /* ORA: Parto dall'alto */
+        for (int i = 0; i < N - 1; i++) 
             for (int j = 0; j < N; j++) 
                 if (!g->grid[i][j].is_hole && g->grid[i+1][j].is_hole) {
                     swap_tiles(&g->grid[i][j], &g->grid[i+1][j]); 
                     moved++;
                 }
     } else if (direction == 'L') {
-        /* Direzione LEFT: Itero da colonna 1 a N. Controllo a sinistra (j-1). */
-        for (int j = 1; j < N; j++) 
+        /* ORA: Parto da destra */
+        for (int j = N - 1; j > 0; j--) 
             for (int i = 0; i < N; i++) 
                 if (!g->grid[i][j].is_hole && g->grid[i][j-1].is_hole) {
                     swap_tiles(&g->grid[i][j], &g->grid[i][j-1]); 
                     moved++;
                 }
     } else if (direction == 'R') {
-        /* Direzione RIGHT: Itero INVERSAMENTE da colonna N-2 a 0. Controllo a destra (j+1). */
-        for (int j = N - 2; j >= 0; j--) 
+        /* ORA: Parto da sinistra */
+        for (int j = 0; j < N - 1; j++) 
             for (int i = 0; i < N; i++) 
                 if (!g->grid[i][j].is_hole && g->grid[i][j+1].is_hole) {
                     swap_tiles(&g->grid[i][j], &g->grid[i][j+1]); 
@@ -345,8 +347,8 @@ void problema_verifica(Game *g, char *filename_mosse) {
  */
 bool solve_recursive(Game *g, char *path, int depth, int max_depth) {
     /* Casi Base */
-    if (check_win(g)) { path[depth] = '\0'; return true; } 
-    if (depth == max_depth) return false; 
+    if (check_win(g)) { path[depth] = '\0'; return true; } // ho già vinto, metto carattere per fermarmi
+    if (depth == max_depth) return false; //non ho vinto 
 
     char moves[] = {'U', 'D', 'L', 'R'};
     
@@ -413,7 +415,7 @@ void problema_ottimizzazione(Game *g, int max_mosse) {
     for (int limit = 1; limit <= max_mosse; limit++) {
         
         /* Resetto la stringa path per pulizia */
-        memset(path, 0, (max_mosse + 1) * sizeof(char));
+        memset(path, 0, (max_mosse + 1) * sizeof(char)); //riempie un blocco di memoria con un valore a scelta
         
         /* Lancio il solver con il limite attuale.
          * Se ritorna true, ho trovato la soluzione più breve possibile per definizione. */

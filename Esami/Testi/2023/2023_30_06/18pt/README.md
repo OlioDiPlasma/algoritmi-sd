@@ -18,6 +18,11 @@ Il codice è organizzato in 2 unità principali più il driver di test:
 * **`grid.txt` / `mosse.txt`**
     configurazione iniziale della griglia (Dimensione e matrice di 0/1) e sequenza di mosse (es: R U U) per il test di verifica.
 
+U = up
+D = down
+R = right
+L = left
+
 
 **Per compilare il progetto (assicurarsi di essere nella cartella corretta):**
 gcc -Wall -g -o tester main.c puzzle.c

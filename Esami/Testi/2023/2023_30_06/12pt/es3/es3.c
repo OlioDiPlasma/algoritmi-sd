@@ -140,7 +140,7 @@ int main() {
     printf("Cerco di dividere in %d sottoinsiemi di somma uguale.\n\n", x);
 
     if (can_partition(v, d, x)) {
-        printf("RISULTATO: Successo! È possibile suddividere il vettore.\n");
+        printf("RISULTATO: Successo! E' possibile suddividere il vettore.\n");
     } else {
         printf("RISULTATO: Fallimento. Non è possibile.\n");
     }
