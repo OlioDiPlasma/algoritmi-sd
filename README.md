@@ -19,10 +19,12 @@ Struttura :
 -   *2023-30-06* 
 *12 pt*: Matrice Dinamica, Logica di Puntatori, Lista Linkata
 *18 pt*: DFS su Grafo Implicito, 'Iterative Deepening Backtracking
+
 [teoria](Esami/Testi/2023/2023_30_06/Teoria/2023_30_06_sol.pdf) | [12 pt](Esami/Testi/2023/2023_30_06/12pt) | [18 pt](Esami/Testi/2023/2023_30_06/18pt) | [video](link)
 -   *2023-30-06* 
 *12 pt*: Matrici e Allocazione Dinamica, Liste Doppiamente Collegate, Backtracking su Stringhe
 *18 pt*: Grafo e UF, Backtracking (Set Partitioning) e Greedy (Kruskal per MST)
+
 [teoria](Esami/Testi/2023/2023_20_09/Teoria/2023_20_09_sol.pdf) | [12 pt](Esami/Testi/2023/2023_20_09/12pt) | [18 pt](Esami/Testi/2023/2023_20_09/18pt) | [video](link)
 
 
