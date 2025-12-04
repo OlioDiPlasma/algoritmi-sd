@@ -26,6 +26,6 @@ Graph GRAPHload(const char *filename); // LISTA PROTOTIPI
 void GRAPHfree(Graph G); //LISTA PROTOTIPI
 int GRAPHgetV(Graph G); // NUOVA DA IMPLEMENTARE
 int GRAPHcheckEdge(Graph G, int u, int v); // NUOVA Ritorna il peso se esiste, -1 se no
-Edge* GRAPHgetEdges(Graph G, int *num_edges); // NUOVA Ritorna vettore di tutti gli archi
+Edge* GRAPHgetEdges(Graph G, int *num_edges); // LISTA PROTOTIPI solo che ritorna direttamente Edge
 
 #endif

@@ -126,7 +126,7 @@ int verifica_soluzione(Graph G, int k, const char *file_soluzione) {
         for(int v_idx=0; v_idx<GRAPHgetV(G); v_idx++) {
             if (comp_vertices[v_idx]) {
                 /* Primo vertice trovato diventa il riferimento (root) */
-                if (root == -1) root = UF_find(uf_comp, v_idx);
+                if (root == -1) root = UF_find(uf_comp, v_idx); //radice del nodo
                 /* Gli altri devono avere la stessa root */
                 else if (UF_find(uf_comp, v_idx) != root) {
                     connesso = 0; break;

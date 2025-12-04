@@ -3,7 +3,7 @@
 #include "lista.h"
 
 /* * ======================================================================================
- * DEFINIZIONE STRUTTURE DATI (Nascoste / Opaque)
+ * DEFINIZIONE STRUTTURE DATI (Nascoste / Opache)
  * ======================================================================================
  * CONCETTO CHIAVE: Information Hiding (Incapsulamento)
  * Definiamo le struct qui nel .c invece che nel .h. In questo modo, il 'main'
@@ -85,7 +85,7 @@ void f(LIST l, int k) {
                 free(temp);
             }
 
-            /* --- 5. FASE DI "RICITURA" (RE-LINKING) --- */
+            /* --- 5. FASE DI "RICUCITURA" (RE-LINKING) --- */
             /* * Passo A: Il 'next' di curr deve saltare i nodi morti e puntare a scanner.
              * [curr] -----------------> [scanner]
              */

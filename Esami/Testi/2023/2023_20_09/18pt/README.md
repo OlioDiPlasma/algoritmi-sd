@@ -38,9 +38,17 @@ Differenze :
 
 * **`grafo.txt` `**
     Il grafo di input (formato lista archi).
+    Struttura : nodo sinistra, nodo destra, peso arco
 
 * **`sol_ok.txt` `**
     Una soluzione valida di esempio (per il test di verifica).
+    Struttura :
+    riga 1 : numero di componenti (2)
+    componente 1 : 
+        - numero di archi (2)
+        - elenco archi : 0-1 peso, 1-2 peso
+    componente 2 : 
+    ecc. 
 
 * **`sol_bad.txt` `**
     Una soluzione non valida di esempio (per il test di verifica). //non l'ho messa era un casino testare 
@@ -51,3 +59,9 @@ gcc -Wall -g -o esame main.c grafo.c verifica.c ottimizzazione.c uf.c
 Per runnare da terminale:
 .\esame.exe
 
+
+COMMENTO SOLUZIONE
+
+nella soluzione k=3 vuole dire che ha 3 vertici ogni componente (0-1-2, 3-4-5)
+Partizione vertici: 0 0 0 1 1 1
+Ho diviso il grafo in due parti. Nel primo gruppo (ID 0) ho messo i vertici 0, 1 e 2 (il primo triangolo). Nel secondo gruppo (ID 1) ho messo i vertici 3, 4 e 5 (il secondo triangolo)."

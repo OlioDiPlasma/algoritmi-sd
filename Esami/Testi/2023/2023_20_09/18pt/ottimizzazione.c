@@ -95,7 +95,7 @@ int get_MST_cost_induced(Graph G, int *partition, int set_id, int k) {
      */
     UF uf = UF_init(V);
     
-    int mst_weight = 0;
+    int mst_weight = 0; //peso del cammino minimo
     int edges_selected = 0;
 
     for (int i=0; i<ie_count; i++) {
@@ -166,7 +166,7 @@ void partition_backtrack(Graph G, int k, int index, int num_sets) {
             /* Copiamo l'array corrente in quello "best" per salvarlo */
             for(int i=0; i<V_global; i++) best_partition[i] = curr_partition[i];
         }
-        return;
+        return; //per uscire in anticipo
     }
 
     /* --- 2. PASSO RICORSIVO A: Aggiungi a insieme esistente --- */

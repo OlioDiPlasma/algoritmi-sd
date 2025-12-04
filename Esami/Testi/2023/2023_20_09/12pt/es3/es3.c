@@ -76,9 +76,11 @@ void solve(char **parole, int nparole, int *used, int last_idx, int current_len,
         if (used[i]) continue;
 
         // PRUNING 2: Verifica vincolo vocale/consonante
+        // "Controlla se last_idx è uguale a -1. Se è vero, allora prev_word diventa NULL. 
+        // Altrimenti, prev_word diventa la parola all'indice last_idx (ovvero parole[last_idx])."
         char *prev_word = (last_idx == -1) ? NULL : parole[last_idx];
         
-        if (check_constraint(prev_word, parole[i])) {
+        if (check_constraint(prev_word, parole[i])) { //posso collegarle
             
             // --- PASSO AVANTI (DO) ---
             used[i] = 1;                // Marco come visitato
@@ -124,7 +126,7 @@ char *BESTbestConcat(char **parole, int nparole) {
     int *best_sol = (int *)malloc(nparole * sizeof(int));
     
     int max_len = 0;
-    int best_level = 0;
+    int best_level = 0; //quante parole compongono la soluzione migliore
 
     // Lancio la ricorsione
     // last_idx = -1 indica che non c'è nessuna parola precedente
