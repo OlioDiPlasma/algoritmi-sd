@@ -2,6 +2,8 @@
 
 Questo progetto risolve un problema di ottimizzazione su grafi che richiede di partizionare i vertici in insiemi disgiunti. Ogni insieme deve indurre un sottografo che sia un albero di almeno k vertici. L'obiettivo è minimizzare la somma totale dei pesi degli archi scelti (MST locali).
 
+<img width="1181" height="553" alt="image" src="https://github.com/user-attachments/assets/1604bd17-455c-4516-8a93-8d1f01ed1511" /># 
+
 ##  Struttura del Progetto
 
 Il codice è organizzato in moduli logici distinti per separare le strutture dati, gli algoritmi ausiliari e la logica di business:
