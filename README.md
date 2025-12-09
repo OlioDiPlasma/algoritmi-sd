@@ -11,7 +11,23 @@ Struttura :
 -   Teoria : alcuni pdf per gli esercizi di teoria poi li tolgo
 -   prototipi.pdf : i prototipi per l'esame ma con il commento su cosa fanno le funzioni
 
-**Lista esami Svolti al momento**
+**Esempio all'esame di multi modulo**
+-------ST.h----------
+//interfaccia di ST con definzione del puntatore + funzioni
+
+
+-------ST.c----------
+
+
+-------Grafo.h----------
+//interfaccia di Grafo con definzione del puntatore + funzioni
+
+
+-------Grafo.c----------
+
+
+**Lista esami Svolti al momento** anno-giorno-mese si lo so è stupido
+
 -   *2023-07-02*
     - *12 pt*: Matrice delle Medie, Graph Partitioning , Albero N-ario
     - *18 pt*: Backtracking, String Matching
