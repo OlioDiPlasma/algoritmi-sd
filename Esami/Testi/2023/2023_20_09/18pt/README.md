@@ -52,9 +52,6 @@ Differenze :
     componente 2 : 
     ecc. 
 
-* **`sol_bad.txt` `**
-    Una soluzione non valida di esempio (per il test di verifica). //non l'ho messa era un casino testare 
-
 Per compilare il progetto (assicurarsi di essere nella cartella corretta):
 gcc -Wall -g -o esame main.c grafo.c verifica.c ottimizzazione.c uf.c
 
