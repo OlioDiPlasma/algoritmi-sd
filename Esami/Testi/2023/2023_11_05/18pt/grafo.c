@@ -127,6 +127,7 @@ void backtrack(Triangle *candidates, int n_cand, int idx,
     }
 
     // Base case: nessun candidato rimasto da controllare
+    // aggiornamento soluzione best pack
     if (idx == n_cand) {
         if (curr_pack->n_triangles > best_pack->n_triangles) {
             best_pack->n_triangles = curr_pack->n_triangles;
@@ -168,7 +169,7 @@ Packing *findMaxTrianglePacking(Graph *G) {
     for (int i = 0; i < G->V; i++) {
         for (int j = i + 1; j < G->V; j++) {
             if (G->madj[i][j]) {
-                for (int k = j + 1; k < G->V; k++) {
+                for (int k = j + 1; k < G->V; k++) {         
                     if (G->madj[i][k] && G->madj[j][k]) {
                         // Trovato un triangolo
                         if (n_cand >= max_possible) {

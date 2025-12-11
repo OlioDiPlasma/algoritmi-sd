@@ -37,8 +37,8 @@ int main() {
     }
     printf("\n");
 
-    saveSolution(best, "soluzione.txt");
-    printf("Soluzione ottima salvata in 'soluzione.txt'.\n");
+    saveSolution(best, "soluzioneTROVATA.txt");
+    printf("Soluzione ottima salvata in 'soluzioneTROVATA.txt'.\n");
 
     // Pulizia
     freePacking(best);
