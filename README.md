@@ -28,6 +28,10 @@ Struttura :
 
 **Lista esami Svolti al momento** anno-giorno-mese si lo so è stupido
 
+2023:fatto totale
+2024:fatti da 12
+2025:fatti da 12
+
 -   *2023-07-02*
     - *12 pt*: Matrice delle Medie, Graph Partitioning , Albero N-ario
     - *18 pt*: Backtracking, String Matching
