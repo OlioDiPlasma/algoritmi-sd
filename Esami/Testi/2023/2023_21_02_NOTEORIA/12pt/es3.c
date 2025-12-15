@@ -158,7 +158,7 @@ int main() {
     Pezzo catalogo[] = {
         {10, 5},   // Tipo 0: Valore 10, Tempo 5
         {40, 20},  // Tipo 1: Valore 40, Tempo 20
-        {100, 55}  // Tipo 2: Valore 100, Tempo 55
+        {90, 50}  // Tipo 2: Valore 90, Tempo 50
     };
 
     // Obiettivi
