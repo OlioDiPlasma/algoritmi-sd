@@ -14,23 +14,70 @@ Struttura :
 
 **Lista esami Svolti al momento** 
 
-2014:
-2015:
-2016:
-2017:
-2018:
-2019:
-2020:
-2021:
-2022:
+2014: ...
+
+2015: ...
+
+2016: ...
+
+2017: ...
+
+2018: ...
+
+2019: ...
+
+2020: ...
+
+2021: ...
+
+2022: ...
+
 2023: teoria, 12, 18
+
 2024: 12
+
 2025: 12
+
 Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
+
+
+**Lista argomenti esami**
+2023_07_02
+-   12 : matrice, alberi, matrice con backtracking
+-   18 : hacking, custom, backtracking
+2023_11_05
+-   12 : matrice, list + node ADT,  Backtracking (Ricerca in profondità)
+-   18 : triangle packing, grafo non orientato e non pesato
+2023_20_09
+-   12 : matrice , list+node ADT,  Disposizioni Semplici
+-   18 : partizionamento, grafo non orientato e pesato
+2023_21_02_NOTEORIA
+-   12 : matrice, list + node ADT,  Ricorsione con Backtracking
+-   18 : incarichi/attività
+2023_30_06
+-   12 : matrice, list + node,  Decision Tree
+-   18 : puzzle
+//////////////////////////////////////////////////////7
+2024_01_05_NOPROG
+-   12 : no
+-   18 : no
+2024_04_07
+-   12 : vettori dinamici, BST foglia profondità, lunghezza percorso
+-   18 : ...
+2024_13_02
+-   12 : ADT lista ordinata + merge, BST , Concatenazione stringhe - Disposizioni Semplici
+-   18 : ...
+2024_13_09
+-   12 : vettori dinamici, BST profondità foglia, lunghezza percorso ottimale
+-   18 : ...
+2024_26_02_NOTEORIA
+-   12 : vettori dinamici stringhe, HEAP,   Disposizioni con Ripetizione
+-   18 : ...
 
 
 **Esempio all'esame di multi modulo**
 -------ST.h----------
+ ...
 //interfaccia di ST con definzione del puntatore + funzioni
 
 
