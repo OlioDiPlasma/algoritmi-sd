@@ -41,13 +41,13 @@ Struttura :
 Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
 
 
-**Lista argomenti esami**
+**Lista argomenti esami**  
 2023_07_02  <br />
 -   12 : matrice, alberi, matrice con backtracking
--   18 : hacking, custom, backtracking
+-   18 : hacking, custom, backtracking  
 2023_11_05  <br />
 -   12 : matrice, list + node ADT,  Backtracking (Ricerca in profondità)
--   18 : triangle packing, grafo non orientato e non pesato
+-   18 : triangle packing, grafo non orientato e non pesato  
 2023_20_09  <br />
 -   12 : matrice , list+node ADT,  Disposizioni Semplici
 -   18 : partizionamento, grafo non orientato e pesato
