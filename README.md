@@ -11,9 +11,28 @@ Struttura :
 -   Teoria : alcuni pdf per gli esercizi di teoria poi li tolgo
 -   prototipi.pdf : i prototipi per l'esame ma con il commento su cosa fanno le funzioni
 
+
+**Lista esami Svolti al momento** 
+
+2014:
+2015:
+2016:
+2017:
+2018:
+2019:
+2020:
+2021:
+2022:
+2023: teoria, 12, 18
+2024: 12
+2025: 12
+Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
+
+
 **Esempio all'esame di multi modulo**
 -------ST.h----------
 //interfaccia di ST con definzione del puntatore + funzioni
+
 
 
 -------ST.c----------
@@ -23,30 +42,6 @@ Struttura :
 //interfaccia di Grafo con definzione del puntatore + funzioni
 
 
+
 -------Grafo.c----------
-
-
-**Lista esami Svolti al momento** anno-giorno-mese si lo so è stupido
-
-2023:fatto totale
-2024:fatti da 12
-2025:fatti da 12
-
--   *2023-07-02*
-    - *12 pt*: Matrice delle Medie, Graph Partitioning , Albero N-ario
-    - *18 pt*: Backtracking, String Matching
-    
-    [teoria](Esami/Testi/2023/2023_07_02/Teoria) | [12 pt](Esami/Testi/2023/2023_07_02/12pt) | [18 pt](Esami/Testi/2023/2023_07_02/18pt) | [video](link)
--   *2023-30-06* 
-    - *12 pt*: Matrice Dinamica, Logica di Puntatori, Lista Linkata
-    - *18 pt*: DFS su Grafo Implicito, 'Iterative Deepening Backtracking
-    
-    [teoria](Esami/Testi/2023/2023_30_06/Teoria/2023_30_06_sol.pdf) | [12 pt](Esami/Testi/2023/2023_30_06/12pt) | [18 pt](Esami/Testi/2023/2023_30_06/18pt) | [video](link)
--   *2023-30-06* 
-    - *12 pt*: Matrici e Allocazione Dinamica, Liste Doppiamente Collegate, Backtracking su Stringhe
-    - *18 pt*: Grafo e UF, Backtracking (Set Partitioning) e Greedy (Kruskal per MST)
-
-     [teoria](Esami/Testi/2023/2023_20_09/Teoria/2023_20_09_sol.pdf) | [12 pt](Esami/Testi/2023/2023_20_09/12pt) | [18 pt](Esami/Testi/2023/2023_20_09/18pt) | [video](link)
-
-
 
