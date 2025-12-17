@@ -72,7 +72,7 @@ void cerca_combinazione(Pezzo *tipi, int P, int T_max, int V_target,
     int valore_pezzo = tipi[indice_tipo].valore;
     
     // Il ciclo parte da q=0 e continua finché non sforiamo il tempo totale
-    for (int q = 0; ; q++) {
+    for (int q = 0; ; q++) { //for usato come while pazzia
         
         // Calcolo nuovo tempo se aggiungessi 'q' pezzi
         int nuovo_tempo = tempo_usato + (q * costo_tempo_pezzo);
