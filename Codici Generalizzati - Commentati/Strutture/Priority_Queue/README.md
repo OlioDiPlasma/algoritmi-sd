@@ -1,3 +1,5 @@
+<img src="IMG/image-1.png" alt="test" width="400">
+
 **Priority Queue** - L'interfaccia
 Struttura dati astratta dove ogni elemento ha una priorità, e gli elementi con priorità più alta vengono estratti prima.
 
@@ -17,6 +19,9 @@ in un min-heap, ogni nodo ≤ dei figli (la radice è il minimo).
 Classico, elementi memorizzati direttamente nell'array secondo la priorità dell'heap
 
 *Di_Indici* - Aggiornare priorità (Dijkstra,Prim)
+
+<img src="IMG/image.png" alt="test" width="400">
+
 L'heap memorizza i puntatori o indici a un array esterno di elementi
 
 
