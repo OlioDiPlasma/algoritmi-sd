@@ -1,7 +1,10 @@
 <img src="IMG/image.png" alt="test" width="400">
 
+
 **Basic** (Ricerca base)
+
 <img src="IMG/image-4.png" alt="test" width="400">
+
 ```
 node
 Key k;
@@ -11,7 +14,9 @@ link left, right;
 
 **Extended** (Selezioni - bilanciamento)
 In pratica è un estensione del primo con operazioni più complesse
+
 <img src="IMG/image-2.png" alt="test" width="200">
+
 ```
 node
 Key k;
@@ -21,7 +26,9 @@ int N; // numero di nodi nel sottoalbero
 ```
 
 **IBST** (Ricerca di intervalli sovrapposti)
+
 <img src="IMG/image-3.png" alt="test" width="400">
+
 Anche se visto separatamente è comunque un implementazione non un ADT
 
 ```
