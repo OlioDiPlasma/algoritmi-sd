@@ -137,12 +137,12 @@ link deleteR(link h, Key k, link z) {
         return z;
         
     // Cerca il nodo da eliminare
-    if (KEYcmp(k, KEYget(h->item)) == -1)
+    if (KEYcmp(k, KEYget(h->item)) == -1) //se minore vai a sinistra
         h->l = deleteR(h->l, k, z);
-    if (KEYcmp(k, KEYget(h->item)) == 1)
+    if (KEYcmp(k, KEYget(h->item)) == 1) //se maggiore vai a destra
         h->r = deleteR(h->r, k, z);
         
-    (h->N)--; // Decrementa N *prima* di trovare il nodo
+    (h->N)--; // Decrementa N (numero di figli) *prima* di trovare il nodo
     
     // Trovato il nodo (chiavi uguali)
     if (KEYcmp(k, KEYget(h->item)) == 0) {
@@ -181,7 +181,7 @@ Item selectR(link h, int r, link z) {
         
     // Se r è maggiore di t, l'elemento è nel sottoalbero destro
     if (t < r)
-        // Cerca a destra, ma con un rango aggiornato (r-t-1)
+        // Cerca a destra, ma con un rango aggiornato (r-t-1)  //QUESTA SAREBBE LA KNEW DI TEORIA che si aggiorna andando a destra
         // (togli i nodi di sinistra 't' e il nodo corrente '1')
         return selectR(h->r, r-t-1, z);
     

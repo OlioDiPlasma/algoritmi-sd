@@ -8,8 +8,8 @@ sa che è un int o una struct). */
 Key KEYget(Item val) {
     return val;
 }
-// Confronta due chiavi. Ritorna <0 se k1<k2, 0 se k1==k2, >0 se k1>k2.
-int KEYcompare (Key k1, Key k2) {
+// Confronta due chiavi. Ritorna <0 se k1<k2, 0 se k1==k2, >0 se k1>k2. //DA MODIFICARE PER LE BST DATO CHE PRENDONO -1 COME CONDIZIONE VALIDA DI CONFRONTO MINORE 
+int KEYcompare (Key k1, Key k2) { 
     return (k1-k2);
 }
 // Legge un Item (un intero) da tastiera

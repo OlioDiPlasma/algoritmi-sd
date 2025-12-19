@@ -331,7 +331,7 @@ static void treePrintR(link h, link z, int strategy) {
     
     // PREORDINE: Visita il NODO, poi Sinistra, poi Destra.
     if (strategy == PREORDER)
-        ITEMstore(h->item); // ITEMstore presumibilmente stampa o salva l'item.
+        ITEMstore(h->item); // ITEMstore  stampa campi item
     
     // Visita ricorsiva del sottoalbero sinistro.
     treePrintR(h->l, z, strategy);
