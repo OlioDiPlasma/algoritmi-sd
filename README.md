@@ -74,7 +74,7 @@ Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
   
 2024_13_02  
 -   12 : ADT lista ordinata + merge, BST , Concatenazione stringhe - Disposizioni Semplici
--   18 : ...
+-   18 : Graph
   
 2024_13_09  
 -   12 : vettori dinamici, BST profondità foglia, lunghezza percorso ottimale
