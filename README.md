@@ -34,9 +34,9 @@ Struttura :
 
 2023: teoria, 12, 18
 
-2024: 12
+2024: 12,18
 
-2025: 12
+2025: teoria non c'è,12,18
 
 Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
 
