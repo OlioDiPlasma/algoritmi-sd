@@ -84,6 +84,19 @@ Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
 -   12 : vettori dinamici stringhe, HEAP,   Disposizioni con Ripetizione
 -   18 : Attività
   
+//////////////////////////////////////////////////////7  
+
+2025_08_05_NOTEORIA 
+-   12 : ADT list, ADT BST, Graph
+-   18 : parole griglia
+  
+2025_21_02_NOTEORIA  
+-   12 : ADT aggregato, BST bilanciato, vettori allocati dinamicamente
+-   18 : attività
+
+2025_27_01_NOTEORIA  
+-   12 : sottosequenza vettori, BST , concatenare stringhe
+-   18 : Graph, alberi spanning tree
 
 
 **Esempio all'esame di multi modulo**

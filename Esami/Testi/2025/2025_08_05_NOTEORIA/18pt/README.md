@@ -12,3 +12,5 @@ KK è sopra ALB.
 EVNA è sotto ALB.
 
 Per un esame da 30 e lode, dobbiamo verificare che il vincolo "Massimo 1 carattere in comune" funzioni davvero. Se il codice accettasse due parole che si sovrappongono per 2 lettere consecutive, verremmo penalizzati.
+
+Risultato testato : ok
