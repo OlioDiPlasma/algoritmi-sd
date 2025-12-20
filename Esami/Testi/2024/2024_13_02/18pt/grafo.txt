@@ -1,0 +1,13 @@
+6 6
+0 sale 4
+1 pepe 7
+2 origano 6
+3 cannella 8
+4 peperoncino 5
+5 origano 8
+0 1
+1 3
+2 3
+2 4
+4 5
+0 5
