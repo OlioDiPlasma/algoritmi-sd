@@ -32,7 +32,7 @@ Struttura :
 
 2022: ...
 
-2023: teoria, 12, 18
+2023: teoria, 12, 18  || VERIFICATI
 
 2024: 12,18
 
