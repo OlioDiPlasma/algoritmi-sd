@@ -82,7 +82,7 @@ Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
   
 2024_26_02_NOTEORIA  
 -   12 : vettori dinamici stringhe, HEAP,   Disposizioni con Ripetizione
--   18 : ...
+-   18 : Attività
   
 
 
