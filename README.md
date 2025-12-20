@@ -70,7 +70,7 @@ Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
   
 2024_04_07  
 -   12 : vettori dinamici, BST foglia profondità, lunghezza percorso
--   18 : ...
+-   18 : Città
   
 2024_13_02  
 -   12 : ADT lista ordinata + merge, BST , Concatenazione stringhe - Disposizioni Semplici
@@ -78,7 +78,7 @@ Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
   
 2024_13_09  
 -   12 : vettori dinamici, BST profondità foglia, lunghezza percorso ottimale
--   18 : ...
+-   18 : Città
   
 2024_26_02_NOTEORIA  
 -   12 : vettori dinamici stringhe, HEAP,   Disposizioni con Ripetizione
