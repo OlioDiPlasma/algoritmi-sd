@@ -1,0 +1,3 @@
+Il problema richiede di selezionare un sottoinsieme di intervalli che siano compatibili tra loro (non sovrapposti) massimizzando la somma delle durate. Poiché ci viene esplicitamente vietato l'approccio greedy (che sarebbe l'algoritmo standard per l'Interval Scheduling classico, ma qui massimizziamo la durata, non il numero di intervalli), dobbiamo esplorare lo spazio delle soluzioni.
+
+Il modello combinatorio sottostante è l'Insieme delle Parti (Power Set). Dobbiamo generare e verificare i sottoinsiemi possibili degli intervalli dati.
