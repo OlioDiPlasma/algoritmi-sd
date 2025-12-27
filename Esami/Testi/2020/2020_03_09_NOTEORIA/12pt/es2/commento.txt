@@ -1,0 +1,26 @@
+tecnicamente il testo chiede di non usare funzioni di librerie
+ma senza malloc e free mi sembra esagerato
+
+/* VERSIONE SENZA STDLIB.H (Niente malloc) */
+
+node_t memory_pool[1000]; // Memoria statica pre-allocata
+int free_idx = 0;         // Cursore alla prima cella libera
+
+static node_t *newNode(int v) {
+    if (free_idx >= 1000) {
+        // Errore: memoria finita (non possiamo fare exit o printf, idealmente return NULL)
+        return NULL; 
+    }
+    
+    // Prendo una "fetta" dall'array
+    node_t *n = &memory_pool[free_idx]; 
+    free_idx++; 
+    
+    // Inizializzo
+    n->val = v;
+    n->occorrenze = 1;
+    n->next = NULL;
+    return n;
+}
+
+Questo renderebbe però impossibile fare la free (o molto complesso gestirla)
