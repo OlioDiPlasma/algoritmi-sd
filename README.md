@@ -30,7 +30,7 @@ Struttura :
 
 2021: ...
 
-2022: ...
+2022: 12
 
 2023: teoria, 12, 18  || VERIFICATI
 
@@ -39,6 +39,9 @@ Struttura :
 2025: teoria non c'è,12,18
 
 Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
+
+Comando generico per compilare multi-file:
+gcc -Wall -g -o tester main.c 
 
 
 **Lista argomenti esami** 
@@ -198,7 +201,7 @@ Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
 **2022**
 
 2022_02_09 
--   12 :
+-   12 : vettori duplicati, ADT albero, disposizioni con ripetizione, powerset
 -   18 : 
   
 2022_09_02

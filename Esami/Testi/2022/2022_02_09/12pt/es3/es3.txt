@@ -1,0 +1,15 @@
+1. Scelta del Modello Combinatorio Il modello adottato è quello del Power Set (Insieme delle Parti) esplorato tramite Backtracking (Disposizioni con ripetizione). Per ogni elemento del vettore I, dobbiamo prendere una decisione tra dimS + 1 alternative:
+
+Non usarlo (scartarlo).
+
+Usarlo per contribuire alla somma S[0].
+
+Usarlo per contribuire alla somma S[1]. ... e così via fino a S[dimS-1].
+
+L'albero di ricorsione ha quindi profondità dimI e ogni nodo ha dimS + 1 ramificazioni.
+
+2. Criteri di Pruning (Potatura) Ho implementato i seguenti criteri per interrompere rami morti dell'albero di ricorsione e velocizzare l'esecuzione:
+
+Superamento del Target: Se l'aggiunta dell'elemento corrente I[i] a una somma parziale la fa diventare maggiore del target S[k], quel ramo viene tagliato immediatamente (non ha senso continuare a sommare numeri positivi se abbiamo già "sforato").
+
+Stop anticipato: La traccia chiede di interrompere la ricerca alla prima soluzione valida. Appena una chiamata ricorsiva ritorna 1 (vero), risaliamo immediatamente la pila senza esplorare altre combinazioni.
