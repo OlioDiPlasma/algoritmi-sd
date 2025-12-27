@@ -11,7 +11,7 @@ Struttura :
 -   Teoria : alcuni pdf per gli esercizi di teoria poi li tolgo
 -   prototipi.pdf : i prototipi per l'esame ma con il commento su cosa fanno le funzioni
 
-
+a
 **Lista esami Svolti al momento** 
 
 2014: ...
