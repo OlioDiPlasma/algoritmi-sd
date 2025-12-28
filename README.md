@@ -1,5 +1,15 @@
 **Repo per passare algoritmi e strutture dati polito . 2025/2026**
 
+
+**AGGIUNTI DA FARE**
+2024_26_02 aggiunta teoria
+2025_27_01 aggiunta teoria
+2025_21_02 aggiunta teoria
+2025_giugno_06 aggiunto tutto
+2025_settembre_09 aggiunto tutto
+
+
+
 Struttura : 
 -   Codici generalizzati : codici e strutture di calcolo combinatorio rubate dall'altra repo
 -   Codici generalizzati - Commentati : come sopra ma commentati e messi solo quelli fondamentali, usiamo questi
