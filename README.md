@@ -2,11 +2,12 @@
 
 
 **AGGIUNTI DA FARE**
-2024_26_02 aggiunta teoria
-2025_27_01 aggiunta teoria
-2025_21_02 aggiunta teoria
-2025_giugno_06 aggiunto tutto
-2025_settembre_09 aggiunto tutto
+- 2024_26_02 aggiunta teoria
+- 2025_27_01 aggiunta teoria
+- 2025_21_02 aggiunta teoria
+- 2025_giugno_06 aggiunto tutto
+- 2025_settembre_09 aggiunto tutto
+
 
 
 
