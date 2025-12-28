@@ -14,7 +14,7 @@
 Struttura : 
 -   Codici generalizzati : codici e strutture di calcolo combinatorio rubate dall'altra repo
 -   Codici generalizzati - Commentati : come sopra ma commentati e messi solo quelli fondamentali, usiamo questi
--   Esami : testi e soluzioni "mie" - nel senso che sono scritte ordinate da gemini pro, rilette, controllate e commentate da me un essere umano
+-   Esami Svolti : testi e soluzioni "mie" - nel senso che sono scritte ordinate da gemini pro, rilette, controllate e commentate da me un essere umano
 -   Esami_Sol_Ufficiali : alcune soluzioni ufficiali dei prof sono nella cartella SOL UFFICIALI all'interno id Esami\Testi in 2019,2021,2022, non ci farei molto affidamento
 -   Laboratori : work in progress
 -   Roba per Orale : alcuni ripassi per l'orale
