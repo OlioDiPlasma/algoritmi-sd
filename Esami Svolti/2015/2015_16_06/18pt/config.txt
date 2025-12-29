@@ -1,0 +1,3 @@
+SeggioviaA 10
+SkiliftB 5
+OvoviaC 20

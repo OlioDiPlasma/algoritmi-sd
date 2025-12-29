@@ -2,6 +2,8 @@
 
 **LISTA ESAMI INTERESSANTI**
 In generale 2018 e 2017
+02/02/2015 buono
+
 
 **AGGIUNTI DA FARE**
 - 2024_26_02 aggiunta teoria
@@ -29,7 +31,7 @@ a
 
 2014: 12
 
-2015: 12
+2015: 12,18
 
 2016: 12,18
 
@@ -47,9 +49,9 @@ a
 
 2023: teoria, 12, 18  || VERIFICATI
 
-2024: 12,18 pt
+2024: 12,18 
 
-2025: 12,18 pt 
+2025: 12,18 
 
 Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
 
