@@ -1,0 +1,6 @@
+5
+Mario ViaRoma 2 10.5
+Luigi ViaPo 1 12.0
+Anna ViaRoma 2 10.5
+Paolo ViaLaghi 3 25.0
+Sara ViaPo 1 15.0

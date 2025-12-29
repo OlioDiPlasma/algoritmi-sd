@@ -45,9 +45,9 @@ a
 
 2023: teoria, 12, 18  || VERIFICATI
 
-2024: 12
+2024: 12,18 pt
 
-2025: 12
+2025: 12,18 pt 
 
 Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
 
