@@ -1,0 +1,5 @@
+Rossi 0
+Bianchi 1
+Verdi 0
+Neri 1
+Gialli 0

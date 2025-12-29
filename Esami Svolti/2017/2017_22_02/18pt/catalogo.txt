@@ -1,0 +1,19 @@
+6 4
+Latte 10
+Pane 6
+Biscotti 16
+Nutella 12
+Zucchero 3
+Caffe 3
+OFF1 19 2
+Latte 2
+Caffe 1
+OFF2 28 2
+Nutella 2
+Pane 1
+OFF3 10 2
+Pane 2
+Zucchero 1
+OFF4 18 2
+Latte 2
+Zucchero 1
