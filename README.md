@@ -1,5 +1,7 @@
 **Repo per passare algoritmi e strutture dati polito . 2025/2026**
 
+**LISTA ESAMI INTERESSANTI**
+In generale 2018
 
 **AGGIUNTI DA FARE**
 - 2024_26_02 aggiunta teoria
@@ -33,7 +35,7 @@ a
 
 2017: 12
 
-2018: 12
+2018: 12,18
 
 2019: 12,18
 
