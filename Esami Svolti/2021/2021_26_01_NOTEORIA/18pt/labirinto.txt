@@ -1,0 +1,13 @@
+6
+Ingresso 0 0 0
+Stanza1 1 0 2
+Stanza2 3 10 3
+Stanza3 2 5 1
+Stanza4 1 0 0
+UscitaSegreta 2 50 0
+Ingresso Stanza1 0
+Stanza1 Stanza2 0
+Stanza1 Stanza4 1
+Stanza4 Stanza3 0
+Stanza2 Stanza3 1
+Stanza3 UscitaSegreta 0

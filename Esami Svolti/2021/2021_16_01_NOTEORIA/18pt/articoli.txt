@@ -1,0 +1,6 @@
+5
+Algoritmi_Greedy Rossi 2 Ottimizzazione
+Strutture_Dati_Hash Bianchi 1 Ricerca
+Reti_Neurali Verdi 3 AI
+Backtracking_Base Rossi 2 Ottimizzazione
+Deep_Learning Neri 2 AI

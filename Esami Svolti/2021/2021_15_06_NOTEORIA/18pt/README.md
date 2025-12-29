@@ -1,0 +1,1 @@
+il magazzino è un BST
