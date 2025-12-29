@@ -1,0 +1,7 @@
+A001 Laptop_Gaming 1200.50 5 Elettronica
+B002 T-Shirt_Bianca 15.99 50 Abbigliamento
+A003 Mouse_Wireless 25.00 20 Elettronica
+C004 Caffettiera 30.00 10 Casa
+B005 Jeans_Slim 45.00 15 Abbigliamento
+A006 Tastiera_RGB 80.00 8 Elettronica
+D007 Romanzo_Fantasy 18.00 100 Libri
