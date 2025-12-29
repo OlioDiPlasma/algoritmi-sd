@@ -1,0 +1,4 @@
+DOG 10
+CAT 5
+LOG 8
+FOG 2
