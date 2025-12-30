@@ -1,0 +1,3 @@
+Climatizzatore 800.50
+Radio_DAB 150.00
+Ruota_Scorta 90.00
