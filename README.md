@@ -237,27 +237,22 @@ gcc -Wall -g -o tester main.c
 2023_07_02 
 -   12 : matrice, alberi, matrice con backtracking
 -   18 : hacking, custom, backtracking
--   Difficoltà : 
 
 2023_11_05
 -   12 : matrice, list + node ADT,  Backtracking (Ricerca in profondità)
 -   18 : triangle packing, grafo non orientato e non pesato
--   Difficoltà : 
 
 2023_20_09
 -   12 : matrice , list+node ADT,  Disposizioni Semplici
 -   18 : partizionamento, grafo non orientato e pesato
--   Difficoltà : 
 
 2023_21_02_NOTEORIA  
 -   12 : matrice, list + node ADT,  Ricorsione con Backtracking
 -   18 : incarichi/attività
--   Difficoltà : 
 
 2023_30_06  
 -   12 : matrice, list + node,  Decision Tree
 -   18 : puzzle
--   Difficoltà : 
   
 //////////////////////////////////////////////////////7  
 **2024**
@@ -265,27 +260,22 @@ gcc -Wall -g -o tester main.c
 2024_01_05_NOPROG  
 -   12 : no
 -   18 : no
--   Difficoltà : 
   
 2024_04_07  
 -   12 : vettori dinamici, BST foglia profondità, lunghezza percorso
 -   18 : Città
--   Difficoltà : 
   
 2024_13_02  
 -   12 : ADT lista ordinata + merge, BST , Concatenazione stringhe - Disposizioni Semplici
 -   18 : Graph
--   Difficoltà : 
   
 2024_13_09  
 -   12 : vettori dinamici, BST profondità foglia, lunghezza percorso ottimale
 -   18 : Città
--   Difficoltà : 
   
 2024_26_02_NOTEORIA  
 -   12 : vettori dinamici stringhe, HEAP,   Disposizioni con Ripetizione
 -   18 : Attività
--   Difficoltà : 
   
 //////////////////////////////////////////////////////7  
 **2025**
@@ -293,17 +283,14 @@ gcc -Wall -g -o tester main.c
 2025_08_05_NOTEORIA 
 -   12 : ADT list, ADT BST, Graph
 -   18 : parole griglia
--   Difficoltà : 
   
 2025_21_02_NOTEORIA  
 -   12 : ADT aggregato, BST bilanciato, vettori allocati dinamicamente
 -   18 : attività
--   Difficoltà : 
 
 2025_27_01_NOTEORIA  
 -   12 : sottosequenza vettori, BST , concatenare stringhe
 -   18 : Graph, alberi spanning tree
--   Difficoltà : 
 
 
 **Esempio all'esame di multi modulo**
