@@ -1,19 +1,5 @@
 **Repo per passare algoritmi e strutture dati polito . 2025/2026**
 
-**LISTA ESAMI INTERESSANTI**
-In generale 2018 e 2017
-02/02/2015 buono
-
-
-**AGGIUNTI DA FARE**
-- 2024_26_02 aggiunta teoria
-- 2025_27_01 aggiunta teoria
-- 2025_21_02 aggiunta teoria
-- 2025_giugno_06 aggiunto tutto
-- 2025_settembre_09 aggiunto tutto
-
-
-
 
 Struttura : 
 -   Codici generalizzati : codici e strutture di calcolo combinatorio rubate dall'altra repo
@@ -26,7 +12,6 @@ Struttura :
 -   Teoria : alcuni pdf per gli esercizi di teoria poi li tolgo
 -   prototipi.pdf : i prototipi per l'esame ma con il commento su cosa fanno le funzioni
 
-a
 **Lista esami Svolti al momento** 
 
 2014: 12,18
