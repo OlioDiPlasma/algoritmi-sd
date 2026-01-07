@@ -51,7 +51,7 @@ a
 
 2024: 12,18 
 
-2025: 12,18 
+2025: teoria, 12,18 
 
 Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
 
