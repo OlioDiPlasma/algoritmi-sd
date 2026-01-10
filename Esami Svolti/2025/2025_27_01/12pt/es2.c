@@ -105,7 +105,7 @@ int printPathToLeaf(link h, char *targetKey) {
 
     int len = 1; // Contiamo questo nodo
 
-    int cmp = strcmp(targetKey, h->item);
+    int cmp = strcmp(targetKey, h->item); //val negativo minore sin, val positivo maggiore dx
     if (cmp < 0) {
         // La destinazione è minore -> andiamo a sinistra
         len += printPathToLeaf(h->l, targetKey);
@@ -129,7 +129,7 @@ int BSTprintMax2(BST b) {
     char *bestLeaf = NULL;
 
     // FASE 1: Trovare la foglia target e il numero di nodi con 2 figli (maxScore)
-    // Nota: 'maxScore' non è la lunghezza del cammino, ma il criterio di ottimizzazione.
+    // Nota: 'maxScore' non è la lunghezza del cammino, ma i nodi che hanno 2 figli lungo un cammino
     int maxScore = findMax2Recursive(b->root, &bestLeaf);
 
     printf("Cammino Ottimo (Nodi con 2 figli: %d): ", maxScore);
@@ -158,19 +158,19 @@ int main() {
     /*
      * Costruiamo questo albero:
      * "mela" (2 figli)
-     * /      \
-     * "bana"    "pera" (2 figli)
-     * /    \
-     * "pesca"  "susina"
+     * /            \
+     * "banana"    "pera" (2 figli)
+     *              /    \
+     *          "pesca"  "susina"
      *
      * Cammini possibili:
-     * 1. mela -> bana (Nodi con 2 figli nel percorso: solo mela = 1)
+     * 1. mela -> banana (Nodi con 2 figli nel percorso: solo mela = 1)
      * 2. mela -> pera -> pesca (Nodi con 2 figli: mela, pera = 2) -> VINCENTE
      * 3. mela -> pera -> susina (Nodi con 2 figli: mela, pera = 2) -> VINCENTE (pari merito)
      */
 
     link root = newNode("mela",
-                    newNode("bana", NULL, NULL),
+                    newNode("banana", NULL, NULL),
                     newNode("pera",
                         newNode("pesca", NULL, NULL),
                         newNode("susina", NULL, NULL)

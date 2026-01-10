@@ -134,14 +134,14 @@ int main() {
         "alfa",
         "roma",
         "faro",
-        "ano" // potrebbe collegarsi a "mela" (no, "la" != "an") o "romano" (roma->ano)
+        "anodo" // potrebbe collegarsi a "mela" (no, "la" != "an") o "romano" (roma->ano)
     };
     int n = 5;
 
     printf("Calcolo massima sequenza concatenabile...\n");
     int ris = maxConcatSeq(dizionario, n);
     
-    // Risultato atteso: mela alfa faro roma ano (Lunghezza 5).
+    // Risultato atteso: mela alfa faro roma anodo (Lunghezza 5).
     printf("Lunghezza massima trovata: %d\n", ris);
 
     return 0;
