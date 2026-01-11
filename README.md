@@ -34,11 +34,9 @@ Struttura :
 
 2023: teoria, 12, 18  || VERIFICATI
 
-2024: 12,18 
+2024: teoria, 12,18 
 
 2025: teoria, 12,18 
-
-Verranno registrati da me quando ho tempo un esame che sfrutta ogni struttura
 
 Comando generico per compilare multi-file:
 gcc -Wall -g -o tester main.c 
