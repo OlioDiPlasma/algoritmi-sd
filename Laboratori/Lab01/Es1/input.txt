@@ -1,0 +1,8 @@
+voto .oto
+foto [^f]oto
+noto [mn]oto
+Voto \Aoto
+foto \aoto
+ciaoR.d A[^f]\anR.d
+test123 \A[aeiou]5t[123]
+Te5t1 \A[aeiou]5t[123]
