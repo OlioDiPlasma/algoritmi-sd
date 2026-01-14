@@ -4,22 +4,23 @@ gcc -Wall -g -o tester(nome exe che creiamo) main.c file1.c(eventuali file .c ag
 
 
 **Esempio all'esame di multi modulo**
--------ST.h----------
+-------ST.h---------- 
 
 
-//interfaccia di ST con definzione del puntatore + funzioni
-
-
-
--------ST.c----------
-
-
--------Grafo.h----------
-//interfaccia di Grafo con definzione del puntatore + funzioni
+//interfaccia di ST con definzione del puntatore + funzioni 
 
 
 
--------Grafo.c----------
+
+-------ST.c---------- 
+
+
+-------Grafo.h---------- 
+//interfaccia di Grafo con definzione del puntatore + funzioni 
+
+
+
+-------Grafo.c---------- 
 
 
 **Lista argomenti esami** 
