@@ -2,6 +2,19 @@
 **Comando generico per compilare multi-file:**
 gcc -Wall -g -o tester(nome exe che creiamo) main.c file1.c(eventuali file .c aggiuntivi)
 
+**IMPORTANTI:**
+4 tipi: 
+-   disposizioni (semplici/ripetute)
+-   combinazioni (semplici/ripetute)
+-   powerset  
+-   partizioni
+
+
+- 11/05/2023 (powerset e combinazioni semplici), 
+- 09/02/2022 (percorso su matrice con disposizioni semplici) 
+- 27/06/2022 (partizioni di un insieme);
+
+
 
 **Esempio all'esame di multi modulo**
 -------ST.h---------- 
