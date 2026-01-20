@@ -99,12 +99,12 @@ void dfs(int v, Graph G, int M, int *currPath, int depth, int currVal) {
         char *nameV = GRAPHgetName(G, v);
         char *nameW = GRAPHgetName(G, w);
 
-        // PRUNING 1: Vincolo Vocale/Consonante [cite: 106]
+        // PRUNING 1: Vincolo Vocale/Consonante
         if (!checkConstraint(nameV, nameW)) {
             continue; // Salta questo vicino
         }
 
-        // PRUNING 2: Vincolo ripetizione nomi (max M volte) [cite: 105]
+        // PRUNING 2: Vincolo ripetizione nomi (max M volte)
         // Dobbiamo vedere se aggiungendo 'w', il suo nome supererebbe M.
         // Contiamo quante volte nameW è GIA' nel path.
         int occurrences = countNameOccurrences(currPath, depth + 1, nameW, G);
@@ -114,8 +114,6 @@ void dfs(int v, Graph G, int M, int *currPath, int depth, int currVal) {
             dfs(w, G, M, currPath, depth + 1, newVal);
         }
     }
-    // Backtracking: Non serve resettare nulla qui perché sovrascriveremo 
-    // currPath[depth] alla prossima iterazione o al ritorno.
 }
 
 /* --- 4. WRAPPER FUNCTION --- */
@@ -126,18 +124,24 @@ void dfs(int v, Graph G, int M, int *currPath, int depth, int currVal) {
 void bestPath(Graph G, int M) {
     int V = GRAPHgetNV(G);
     
-    // Allocazione
-    int *currPath = malloc(V * M * sizeof(int)); // Dimensione max teorica (se M grande)
-    // Meglio: Una stima sicura. Poiché possono esserci cicli, il path può essere lungo.
-    // Usiamo una dimensione ragionevolmente grande per l'esame o gestiamo la realloc.
-    // Qui assumiamo un buffer sufficiente (es. 100) per semplicità didattica.
-    // In produzione: andrebbe calcolato o reallocato.
-    int MAX_DEPTH = 100; 
-    free(currPath); // rifaccio pulito
-    currPath = malloc(MAX_DEPTH * sizeof(int));
+    // Calcolo dimensione massima teorica:
+    // Nel caso peggiore visitiamo ogni nodo esattamente M volte prima di non avere più mosse.
+    // Usiamo V * M come limite superiore sicuro per evitare buffer overflow.
+    int maxDepth = V * M + 1; 
+
+    int *currPath = malloc(maxDepth * sizeof(int));
+    if (currPath == NULL) {
+        printf("Errore malloc currPath\n");
+        exit(1);
+    }
     
     if (bestPathArr != NULL) free(bestPathArr);
-    bestPathArr = malloc(MAX_DEPTH * sizeof(int));
+    bestPathArr = malloc(maxDepth * sizeof(int));
+    if (bestPathArr == NULL) {
+        printf("Errore malloc bestPathArr\n");
+        free(currPath);
+        exit(1);
+    }
     
     maxVal = -1; // Reset globale
     bestPathLen = 0;
@@ -180,7 +184,7 @@ int main() {
 
     printf("Grafo caricato: %d nodi\n", GRAPHgetNV(G));
 
-    // Test Case come da esempio PDF [cite: 156]
+    // Test Case come da esempio PDF
     // M=2 significa che ogni nome può comparire max 2 volte.
     bestPath(G, 2);
 
