@@ -37,7 +37,7 @@ void solve_binaria(int index, int *curr_sol, int count, int N, int *val) {
 
     // --- BASE CASE ---
     if (index == N) {
-        // Ho deciso per tutti gli N oggetti. Controllo se la soluzione è valida.
+        // Ho deciso per tutti gli N oggetti cioè sono alla fine. Controllo se la soluzione è valida.
         if (check_validita(curr_sol, count)) {
             salva_soluzione(curr_sol, count);
         }
