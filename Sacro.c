@@ -1,10 +1,20 @@
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////CALCOLO COMBINATORIO
+
 
 /*
 1. Modello Binario (Sottoinsiemi / Power Set / Combinazioni)
-Logica: "Prendo o Lascio?" 
+Logica: "Prendo o Lascio?"  "Seleziono"
 Uso: Trovare un gruppo di elementi (es. "Zaino", "Somma uguale a K"). 
 Caratteristica: Non c'è il ciclo for. 
 L'albero si biforca sempre in 2.
+
+
+Hai un elenco di 10 progetti aziendali. 
+Ogni progetto ha un Costo e un Guadagno. 
+Hai un Budget massimo di 1000€. Obiettivo: 
+Seleziona il sottoinsieme di progetti che massimizza il guadagno totale senza sforare il budget.
+
  */
 
 /*
@@ -41,10 +51,15 @@ void solve_binaria(int index, int *curr_sol, int count, int N, int *val) {
 ///////////////////////////////////////////////////////
 /*
 2. Modello a Slot (Permutazioni / Disposizioni)
-Logica: "Chi metto in questa posizione?" 
+Logica: "Chi metto in questa posizione?" "Ordinamento/Sequenza"
 Uso: Anagrammi, N-Regine, Classifiche, Commesso Viaggiatore (TSP). 
 Caratteristica: C'è il ciclo for su tutti gli elementi. 
 Serve mark[] per non ripetere.
+
+Hai 5 città (A, B, C, D, E) e una matrice con le distanze tra loro. 
+Obiettivo: Trova l'ordine di visita (es. A -> C -> E -> B -> D -> A) 
+che minimizza i km totali percorsi, visitando ogni città una sola volta.
+
 */
 
 /*
@@ -90,9 +105,13 @@ void solve_slot(int pos, int *curr_sol, int *mark, int N, int k, int *val) {
 
 /*
 3. Modello Partizioni (Palle nelle Scatole)
-Logica: "Metto in una scatola vecchia o apro una nuova?" 
+Logica: "Metto in una scatola vecchia o apro una nuova?" "Raggruppamento"
 Uso: Suddividere un insieme in gruppi (es. Squadre, Bin Packing). 
 Caratteristica: Ciclo for dinamico (fino a n_scatole) + 1 chiamata fuori ciclo.
+
+
+Hai N file da salvare e un numero imprecisato di Hard Disk. Ogni disco ha capienza 1TB.
+Obiettivo: Raggruppa i file in modo da usare il minor numero di dischi possibile.
 */
 
 /*
@@ -129,7 +148,8 @@ void solve_partizioni(int index, int *sol, int n_scatole, int N) {
 }
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///// MISTO DI PROGRAMMAZIONE
 
 
 
