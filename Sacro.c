@@ -247,6 +247,10 @@ void solve_griglia(int r, int c, int step, int **mat, int **visited, int R, int 
 
 /* Nota Varianti:
    - Diagonali: aggiungi le 4 combinazioni ai vettori dr/dc (diventano size 8).
+   // I primi 4 sono Nord, Est, Sud, Ovest. 
+// I successivi 4 sono le Diagonali.
+int dr[] = {-1, 0, 1, 0,   -1, 1,  1, -1}; 
+int dc[] = { 0, 1, 0, -1,   1, 1, -1, -1}; Ora il ciclo deve girare 8 volte! i<8
    - Flood Fill (Colora area): togli il passo 3 (Backtrack). Una volta colorato, resta colorato.
 */
 
@@ -265,6 +269,30 @@ Struttura: mat[u][v] == 1 se c'è arco.
 */
 
 #define MAX_N 100 
+
+void load_matrix(int mat[MAX_N][MAX_N], int N, int E, FILE *fp, int orientato, int pesato) {
+    
+    // 1. PULIZIA (Fondamentale!)
+    // La matrice statica contiene "spazzatura" se non azzerata.
+    for(int i=0; i<N; i++)
+        for(int j=0; j<N; j++)
+            mat[i][j] = 0;
+
+    // 2. LETTURA ARCHI
+    int u, v, w;
+    for (int i = 0; i < E; i++) {
+        if (pesato) fscanf(fp, "%d %d %d", &u, &v, &w);
+        else {      fscanf(fp, "%d %d", &u, &v); w = 1; }
+
+        // Arco u -> v
+        mat[u][v] = w;
+
+        // Arco v -> u (Solo se NON orientato)
+        if (!orientato) {
+            mat[v][u] = w;
+        }
+    }
+}
 
 void dfs_matrix(int u, int N, int mat[MAX_N][MAX_N], int *visited) {
     
@@ -294,6 +322,38 @@ struct Node {
     int dest;
     struct Node* next;
 };
+
+/*
+ * Ritorna un array di puntatori (le teste delle liste).
+ * Esempio chiamata nel main: struct Node** adj = load_list(N, E, fp, 0, 1);
+ */
+struct Node** load_list(int N, int E, FILE *fp, int orientato, int pesato) {
+    
+    // 1. ALLOCAZIONE VETTORE DI TESTE
+    struct Node** adj = (struct Node**)malloc(N * sizeof(struct Node*));
+    for (int i = 0; i < N; i++) adj[i] = NULL; // Inizializzo a NULL
+
+    // 2. LETTURA ARCHI
+    int u, v, w;
+    for (int i = 0; i < E; i++) {
+        if (pesato) fscanf(fp, "%d %d %d", &u, &v, &w);
+        else {      fscanf(fp, "%d %d", &u, &v); w = 1; }
+
+        // INSERIMENTO IN TESTA (Head Insertion) - O(1)
+        // Arco u -> v
+        struct Node* n = newNode(v, w);
+        n->next = adj[u];
+        adj[u] = n;
+
+        // Arco v -> u (Solo se NON orientato)
+        if (!orientato) {
+            n = newNode(u, w);
+            n->next = adj[v];
+            adj[v] = n;
+        }
+    }
+    return adj;
+}
 
 void dfs_list(int u, struct Node** adj, int *visited) {
 
@@ -937,3 +997,50 @@ void wrapper_solve(int N, int *val) {
     free(curr_sol);
     free(best_sol);
 }
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// 24. LE "TYPEDEF": INTERPRETARE I NOMI
+/////////////////////////////////////////////////////////////////////////////////////////
+/*
+   CONFUSIONE COMUNE:
+   C'è una differenza enorme tra definire la "Scatola" (l'oggetto) e definire l' "Indirizzo" (il puntatore).
+   Sbagliare qui significa sbagliare tutte le malloc e i passaggi di parametri.
+*/
+
+// CASO 1: IL MODELLO "OGGETTO" (node_t)
+// Qui stiamo dando un soprannome alla STRUTTURA INTERA.
+typedef struct node {
+    int val;
+    struct node *next; // Nota: qui devo usare "struct node *" perché "node_t" non esiste ancora!
+} node_t;
+
+/* Uso nel codice:
+   node_t a;        -> Ho creato una SCATOLA vera e propria sullo stack.
+   node_t *p;       -> Ho creato un PUNTATORE a una scatola.
+   sizeof(node_t);  -> Mi dà la dimensione della scatola (es. 8 o 16 byte).
+*/
+
+
+// CASO 2: IL MODELLO "PUNTATORE NASCOSTO" (link)
+// Qui stiamo dando un soprannome al PUNTATORE.
+typedef struct node *link; 
+
+/* Uso nel codice:
+   link head;       -> "head" è GIÀ un puntatore (equivale a: struct node *head).
+   link *t;         -> "t" è un puntatore a puntatore (struct node **t).
+   
+   ATTENZIONE ALLA MALLOC:
+   head = malloc(sizeof(struct node));  // GIUSTO: voglio spazio per la scatola
+   head = malloc(sizeof(link));         // SBAGLIATO: allochi spazio solo per un indirizzo (4/8 byte)!
+*/
+
+
+// CASO 3: IL MODELLO IBRIDO (Spesso usato negli esami)
+typedef struct u_node *u_link;  // u_link è il puntatore
+struct u_node {                 // struct u_node è la scatola
+    int val;
+    u_link next;                // Qui posso usare u_link perché l'ho dichiarato sopra
+};
