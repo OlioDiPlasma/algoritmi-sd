@@ -739,3 +739,201 @@ int checkDominatingSet(int *sol, struct Node** adj, int N) {
     return 1;
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// 20. TEMPLATE MAIN & LETTURA FILE
+/////////////////////////////////////////////////////////////////////////////////////////
+/*
+   Uso: Struttura base per aprire file, leggere dimensioni e allocare memoria.
+   Note: 
+   - Controllare sempre se la fopen restituisce NULL.
+   - Usare fscanf per leggere.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char **argv) {
+    // 1. APERTURA FILE
+    FILE *fp = fopen("input.txt", "r"); // O argv[1] se richiesto
+    if (fp == NULL) {
+        printf("Errore apertura file.\n");
+        return 1;
+    }
+
+    int N, E; // Nodi/Elementi, Archi
+    if (fscanf(fp, "%d %d", &N, &E) != 2) {
+        // Gestione errore lettura (opzionale ma buona prassi)
+        printf("Errore lettura dimensioni.\n");
+        fclose(fp);
+        return 1;
+    }
+
+    // 2. ALLOCAZIONE DINAMICA VETTORI
+    // Esempio: vettore di interi (valori/pesi)
+    int *val = (int *)malloc(N * sizeof(int));
+    for (int i = 0; i < N; i++) {
+        fscanf(fp, "%d", &val[i]);
+    }
+
+    /* QUI CHIAMI IL WRAPPER (vedi punto 23)
+       wrapper_solve(N, val);
+    */
+
+    // 3. CHIUSURA E PULIZIA
+    free(val);
+    fclose(fp);
+    return 0;
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// 21. GESTIONE GRAFI (Load & Free)
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// A. CARICAMENTO LISTA DI ADIACENZA (Grafo Orientato e Non)
+// Presuppone: struct Node definita come sopra.
+struct Node** loadGraphList(FILE *fp, int N, int E) {
+    // Alloco array di puntatori (le "teste" delle liste)
+    struct Node** adj = (struct Node**)malloc(N * sizeof(struct Node*));
+    
+    // Inizializzo tutto a NULL (importante!)
+    for (int i = 0; i < N; i++) adj[i] = NULL;
+
+    int u, v, w;
+    for (int i = 0; i < E; i++) {
+        fscanf(fp, "%d %d %d", &u, &v, &w); // Leggo arco u->v pesato w
+        
+        // Inserimento in testa (O(1)) per u -> v
+        struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+        newNode->dest = v;
+        newNode->weight = w;
+        newNode->next = adj[u];
+        adj[u] = newNode;
+
+        // SE IL GRAFO È NON ORIENTATO (u <-> v), duplico l'arco v -> u
+        /*
+        newNode = (struct Node*)malloc(sizeof(struct Node));
+        newNode->dest = u;
+        newNode->weight = w;
+        newNode->next = adj[v];
+        adj[v] = newNode;
+        */
+    }
+    return adj;
+}
+
+// B. FREE LISTA DI ADIACENZA (Obbligatorio a fine main)
+void freeGraphList(struct Node** adj, int N) {
+    if (adj == NULL) return;
+    
+    for (int i = 0; i < N; i++) {
+        struct Node* tmp = adj[i];
+        while (tmp != NULL) {
+            struct Node* toDelete = tmp;
+            tmp = tmp->next;
+            free(toDelete);
+        }
+    }
+    free(adj); // Libero l'array di teste
+}
+
+// C. CARICAMENTO MATRICE DI ADIACENZA
+int** loadGraphMatrix(FILE *fp, int N, int E) {
+    // Allocazione matrice dinamica
+    int **mat = (int **)malloc(N * sizeof(int *));
+    for (int i = 0; i < N; i++) {
+        mat[i] = (int *)calloc(N, sizeof(int)); // calloc inizializza a 0!
+    }
+
+    int u, v, w;
+    for (int i = 0; i < E; i++) {
+        fscanf(fp, "%d %d %d", &u, &v, &w);
+        mat[u][v] = w; // O 1 se non pesato
+        // mat[v][u] = w; // Decommentare se non orientato
+    }
+    return mat;
+}
+
+// D. FREE MATRICE
+void freeGraphMatrix(int **mat, int N) {
+    for (int i = 0; i < N; i++) {
+        free(mat[i]);
+    }
+    free(mat);
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// 22. COMPARATORI PER QSORT
+/////////////////////////////////////////////////////////////////////////////////////////
+/*
+   Uso: qsort(array, N, sizeof(Tipo), compare_func);
+   Ritorna: <0 se a<b, 0 se a==b, >0 se a>b (per ordine crescente).
+   Per decrescente: invertire a e b.
+*/
+
+// A. INTERI SEMPLICI
+int compareInt(const void *a, const void *b) {
+    int va = *(const int *)a;
+    int vb = *(const int *)b;
+    // Non fare (va - vb) per evitare overflow se i numeri sono grandi!
+    if (va < vb) return -1;
+    if (va > vb) return 1;
+    return 0;
+}
+
+// B. STRUTTURE (Es. Ordina Progetti per profitto decrescente / ratio)
+typedef struct {
+    int id;
+    int costo;
+    int guadagno;
+    float ratio; // guadagno/costo
+} Progetto;
+
+int compareStruct(const void *a, const void *b) {
+    const Progetto *p1 = (const Progetto *)a;
+    const Progetto *p2 = (const Progetto *)b;
+    
+    // Ordine DECRESCENTE di ratio
+    if (p1->ratio > p2->ratio) return -1;
+    if (p1->ratio < p2->ratio) return 1;
+    return 0;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// 23. WRAPPER PATTERN (Preparazione Ricorsione)
+/////////////////////////////////////////////////////////////////////////////////////////
+/*
+   Obiettivo: Nascondere al main la complessità dell'allocazione dei vettori ausiliari.
+*/
+void wrapper_solve(int N, int *val) {
+    // 1. ALLOCAZIONE VETTORI DI SUPPORTO
+    // calloc è cruciale: mette tutto a 0 (false)
+    int *mark = (int *)calloc(N, sizeof(int)); 
+    int *curr_sol = (int *)malloc(N * sizeof(int));
+    int *best_sol = (int *)malloc(N * sizeof(int));
+    
+    int best_val = -1; // O INT_MAX se cerchi il minimo
+
+    // 2. CHIAMATA RICORSIVA
+    // Esempio chiamata a solve_binaria o solve_slot
+    // solve_rec(0, N, val, curr_sol, best_sol, &best_val, 0, mark);
+
+    // 3. STAMPA RISULTATO
+    printf("Miglior valore trovato: %d\n", best_val);
+    printf("Soluzione: ");
+    for(int i=0; i<N; i++) { // O fino alla dimensione della soluzione
+         // if (best_sol[i]...) printf...
+    }
+    printf("\n");
+
+    // 4. PULIZIA
+    free(mark);
+    free(curr_sol);
+    free(best_sol);
+}
