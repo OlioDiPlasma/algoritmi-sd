@@ -468,7 +468,7 @@ int countCommon(ListNode *h1, ListNode *h2) {
 
 // B. CANCELLAZIONE CON CONDIZIONE (es. lunghezza stringa > K)
 // Logica: Serve puntatore 'prev' e 'curr'. Gestire testa a parte.
-/* Nota: Supponiamo ListNode contenga 'char *str'.
+/* Nota: Supponiamo ListNode contenga 'char *str'. */
    int listDelete(ListNode **headRef, int threshold) {
        ListNode *curr = *headRef;
        ListNode *prev = NULL;
@@ -495,7 +495,7 @@ int countCommon(ListNode *h1, ListNode *h2) {
        }
        return deleted;
    }
-*/
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // 12. ALBERI AVANZATI (Validazione & Distanze)
