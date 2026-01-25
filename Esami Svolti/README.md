@@ -192,44 +192,90 @@ gcc -Wall -g -o tester(nome exe che creiamo) main.c file1.c(eventuali file .c ag
 //////////////////////////////////////////////////////7  
 **2022**
 
-2022_02_09 
--   12 : vettori duplicati, ADT albero, disposizioni con ripetizione, powerset
--   18 : 
-  
-2022_09_02
--   12 : 
--   18 : 
+*Appello 27 Gennaio 2022*
+Traccia 12 Punti:
+- Matrici: Filtraggio per mantenere solo righe/colonne senza valori nulli.
+- Alberi Binari: Verifica se un albero binario è un BST valido.
+- Grafi (Ricorsione): Partizionamento di persone nel minor numero di gruppi di amici (clique partitioning).
+Traccia 18 Punti:
+- Griglie/Tiling: Suddivisione di una regione bianca (connessa) in griglia nel minor numero possibile di sottoregioni quadrate non sovrapposte.
 
-2022_27_01
--   12 : 
--   18 : 
 
-2022_27_06
--   12 :
--   18 :
+*Appello 9 Febbraio 2022*
+Traccia 12 Punti:
+- Matrici: Generazione matrice derivata mantenendo solo righe/colonne con indici pari.
+- Alberi (Huffman): Decodifica di una stringa binaria dato un albero di Huffman.
+- Grafi (Ricorsione): Individuazione del gruppo più numeroso in cui ogni persona ha almeno $k$ amici nel gruppo.
+Traccia 18 Punti:
+- Griglie/Pathfinding: Visita completa di celle bianche in una griglia con ostacoli. Ottimizzazione: Minimo numero di cambi di direzione (cammino tipo "Snake").
+
+
+*Appello 27 Giugno 2022*
+Traccia 12 Punti:
+- Matrici: "Flattening" di una matrice 3D in 2D secondo uno schema specifico.
+- Alberi N-ari: Conteggio nodi con grado superiore al proprio padre.
+- Ricorsione (Stringhe): Generazione sequenze con vincoli su maiuscole/minuscole e ripetizioni consecutive massime.
+Traccia 18 Punti:
+- Grafi: "Domatic Partition". Partizione dei vertici in sottoinsiemi, dove ogni sottoinsieme è un Dominating Set. Ottimizzazione della cardinalità massima.
+
+
+
+*Appello 2 Settembre 2022*
+
+Traccia 12 Punti:
+- Vettori: Differenza insiemistica tra due vettori ordinati (elementi in v1 ma non in v2).
+- Alberi N-ari: Conteggio nodi con grado esattamente 1, 2 o 3.
+- Ricorsione (Subset Sum): Verifica se elementi di un vettore possono formare una sequenza di somme obiettivo.
+Traccia 18 Punti:
+- Matrici e Stringhe: Crucipuzzle. Ricerca di parole in griglia (orizzontale, verticale, diagonale) con vincoli sulle intersezioni (max 1 char comune). Ottimizzazione valore parole trovate.
   
 //////////////////////////////////////////////////////7  
 **2023**
 
-2023_07_02 
--   12 : matrice, alberi, matrice con backtracking
--   18 : hacking, custom, backtracking
+*Appello 7 Febbraio 2023*
+Traccia 12 Punti:
+- Matrici: Generazione di una matrice derivata calcolando la media dei vicini (smoothing).
+- Alberi N-ari: Calcolo della lunghezza del cammino più lungo con soli valori positivi.
+- Grafi (Ricorsione): Suddivisione dei nodi (città) nel minor numero di gruppi raggiungibili entro 1 hop.
+Traccia 18 Punti:
+- Matrici e Stringhe: Mini-gioco di hacking. Selezione di token alternando riga/colonna per formare sottostringhe (bonus) in un buffer limitato. Ottimizzazione del punteggio totale.
 
-2023_11_05
--   12 : matrice, list + node ADT,  Backtracking (Ricerca in profondità)
--   18 : triangle packing, grafo non orientato e non pesato
+*Appello 21 Febbraio 2023*
+Traccia 12 Punti:Matrici: 
+- Filtraggio (rimozione) di righe/colonne contenenti vocali.
+- Liste Doppie: Cancellazione di nodi con valori compresi in un intervallo $[a, b]$.
+- Ricorsione (Knapsack variant): Selezione di pezzi da produrre entro un tempo $T$ per minimizzare la differenza da un valore obiettivo $V$.
+Traccia 18 Punti:
+- Assegnamento (Greedy/Ricorsione): Assegnazione di persone a incarichi considerando esperienza individuale e matrice di sinergia. Vincolo di soglia (75%) per il successo. Ottimizzazione della resa complessiva.
 
-2023_20_09
--   12 : matrice , list+node ADT,  Disposizioni Semplici
--   18 : partizionamento, grafo non orientato e pesato
 
-2023_21_02_NOTEORIA  
--   12 : matrice, list + node ADT,  Ricorsione con Backtracking
--   18 : incarichi/attività
+*Appello 11 Maggio 2023*
+Traccia 12 Punti:
+- Matrici: Calcolo della somma cumulata (rettangolare) rispetto all'origine.
+- Liste: Compattazione di una lista ordinata (rimozione duplicati consecutivi mantenendo il primo).
+- Ricorsione (Set Cover): Individuazione dell'insieme a cardinalità minima di sottoinsiemi disgiunti per coprire l'universo (oggetti/insiemi).
+Traccia 18 Punti:
+- Grafi: Problema del "Triangle Packing". Individuazione di sottoinsiemi disgiunti di 3 vertici che formano triangoli (clique di dimensione 3). Ottimizzazione della cardinalità (massimo numero di triangoli).
 
-2023_30_06  
--   12 : matrice, list + node,  Decision Tree
--   18 : puzzle
+
+
+*Appello 30 Giugno 2023*
+Traccia 12 Punti:
+- Matrici: Somma cumulata su diagonali e anti-diagonali con vincoli sugli indici.
+- Liste: Cancellazione nodi basata sulla divisibilità dell'indice originale per 3.
+- Ricorsione (Partizione): Suddivisione di un vettore in $x$ sottoinsiemi aventi tutti la stessa somma.
+Traccia 18 Punti:
+- Puzzle/Grafi: Sliding Puzzle con canali. Movimento tessere su griglia per connettere sorgente e destinazione tramite tubi. Ricerca sequenza di mosse valida entro $M$ passi.
+
+
+
+*Appello 20 Settembre 2023*
+Traccia 12 Punti:
+- Matrici: Somma cumulata di $k$ elementi adiacenti su righe e colonne.
+- Liste Doppie: Compattazione di duplicati consecutivi solo se la sequenza è lunga almeno $k$.
+- Stringhe e Ricorsione: BESTbestConcat. Concatenazione di parole rispettando vincoli fonetici (alternanza vocale/consonante tra fine/inizio parola). Stringa più lunga.
+Traccia 18 Punti:
+- Grafi: "k-capacitated tree partition". Partizionamento degli archi in sottoinsiemi disgiunti che formano alberi di almeno $k$ vertici. Ottimizzazione del peso minimo totale.
   
 //////////////////////////////////////////////////////7  
 **2024**
