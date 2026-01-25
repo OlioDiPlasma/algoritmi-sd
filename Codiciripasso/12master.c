@@ -2,6 +2,30 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* ---------------------------------------------------------------------------------
+ * SEZIONE 0: BST, NODO WRAPPER
+ * --------------------------------------------------------------------------------- */
+
+// 1. PRIMA definisci la struttura del nodo
+struct node {
+    Item item;          
+    struct node *l;     // Figlio sinistro
+    struct node *r;     // Figlio destro
+};
+
+// 2. POI crei l'alias per il puntatore al nodo (comodissimo)
+typedef struct node *link;
+
+// 3. INFINE definisci la struttura dell'Albero (il Wrapper)
+struct binary_search_tree {
+    link root;          // La radice
+    int size;           // (Facoltativo) Numero di nodi
+};
+
+// 4. E l'alias per il puntatore all'Albero
+typedef struct binary_search_tree *BST;
+
+
 /* =================================================================================
  * MASTER FILE - PREPARAZIONE 12 PUNTI (2024-2025)
  * =================================================================================
