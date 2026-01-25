@@ -473,3 +473,133 @@ void partizioni(int pos, int n_passeggeri, int k_bus, int *assegnamenti) {
         partizioni(pos + 1, n_passeggeri, k_bus, assegnamenti);
     }
 }
+
+
+
+ /* ---------------------------------------------------------------------------------
+ * SEZIONE 10: Misto resto
+ * --------------------------------------------------------------------------------- */
+
+/* ==============================================================================
+ * PARTE 1: TYPEDEF e STRUCT
+ * ============================================================================== */
+
+// Definizione classica
+struct studente_s {
+    char nome[50];
+    int matricola;
+};
+
+// TYPEDEF: Creo un alias.
+// D'ora in poi posso scrivere "Studente" invece di "struct studente_s"
+typedef struct studente_s Studente;
+
+// Posso anche definire puntatori specifici (comodo per le Linked List)
+typedef Studente *LinkStudente; 
+
+
+/* ==============================================================================
+ * PARTE 2: PROTOTIPI (Come usare i puntatori nelle funzioni)
+ * ============================================================================== */
+
+// Funzione che modifica un intero (PUNTATORE SINGOLO)
+// Parametro: int *n -> "Dammi l'indirizzo di un intero"
+void raddoppia(int *n) {
+    *n = (*n) * 2; // Accedo al valore puntato e lo modifico
+}
+
+// Funzione che alloca una matrice dentro la funzione (TRIPLO PUNTATORE)
+// Perché triplo? 
+// 1. Una matrice è int** (doppio puntatore).
+// 2. Se voglio MODIFICARE la variabile "matrice" (allocarla) dentro una funzione,
+//    devo passare il suo indirizzo.
+// 3. Indirizzo di (int**) -> diventa (int***).
+void creaMatrice(int ***matrice, int righe, int colonne) {
+    
+    // Deferenziamento (*matrice) per accedere alla variabile originale nel main
+    *matrice = malloc(righe * sizeof(int *)); // Alloco il vettore di righe
+    
+    for (int i = 0; i < righe; i++) {
+        // (*matrice)[i] è la riga i-esima.
+        // Uso CALLOC per avere tutto a 0 (molto comodo per matrici)
+        (*matrice)[i] = calloc(colonne, sizeof(int)); 
+    }
+}
+
+/* ==============================================================================
+ * MAIN: IL LABORATORIO
+ * ============================================================================== */
+int main() {
+
+    printf("--- 1. MALLOC & STRUCT ---\n");
+    // Alloco UNO studente dinamicamente
+    // MALLOC: "Dammi X byte sporchi"
+    Studente *s1 = malloc(sizeof(Studente)); 
+    
+    if (s1 == NULL) { printf("Errore memoria"); exit(1); }
+
+    // Accesso ai campi con FRECCIA (->) perché s1 è un puntatore
+    s1->matricola = 12345;
+    strcpy(s1->nome, "Mario Rossi"); 
+    
+    printf("Studente: %s, Matr: %d\n", s1->nome, s1->matricola);
+
+
+    printf("\n--- 2. REALLOC (Vettori Dinamici) ---\n");
+    // Alloco un vettore di 2 interi
+    int *vettore = malloc(2 * sizeof(int));
+    vettore[0] = 10;
+    vettore[1] = 20;
+    
+    printf("Dimensione originale: 2 elementi\n");
+
+    // REALLOC: "Mi serve più spazio, allarga la casa"
+    // Se non c'è spazio contiguo, sposta tutto e mi ridà il nuovo indirizzo.
+    // Importante: riassegnare sempre a se stesso (vettore = realloc...)
+    int *temp = realloc(vettore, 4 * sizeof(int)); 
+    
+    if (temp != NULL) {
+        vettore = temp; // Aggiorno il puntatore solo se è andata bene
+        vettore[2] = 30; // Ora ho spazio per questi
+        vettore[3] = 40;
+        printf("Realloc riuscita: ora ho 4 elementi.\n");
+    }
+
+
+    printf("\n--- 3. MATRICI (DOPPI PUNTATORI) ---\n");
+    int R = 3, C = 4;
+    
+    // Una matrice è un "Puntatore a Puntatori" (int **)
+    int **miaMatrice; 
+
+    // Chiamo la funzione per allocarla.
+    // Passo &miaMatrice (indirizzo di un int**) -> Ecco il TRIPLO PUNTATORE
+    creaMatrice(&miaMatrice, R, C);
+
+    // Uso la matrice normalmente (doppia indicizzazione)
+    miaMatrice[1][1] = 99; // Modifico un valore
+    
+    printf("Matrice creata e inizializzata a 0 (grazie a calloc).\n");
+    printf("Valore in [0][0]: %d\n", miaMatrice[0][0]);
+    printf("Valore in [1][1]: %d (modificato)\n", miaMatrice[1][1]);
+
+
+    printf("\n--- 4. PULIZIA (FREE) ---\n");
+    // 1. Libero lo studente
+    free(s1);
+
+    // 2. Libero il vettore
+    free(vettore);
+
+    // 3. Libero la matrice (ATTENZIONE: Si libera al contrario dell'allocazione)
+    // Prima le righe...
+    for (int i = 0; i < R; i++) {
+        free(miaMatrice[i]);
+    }
+    // ...poi il contenitore delle righe
+    free(miaMatrice);
+
+    printf("Memoria pulita. Esame salvo.\n");
+
+    return 0;
+}
