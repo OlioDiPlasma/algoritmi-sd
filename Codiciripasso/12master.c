@@ -416,3 +416,60 @@ int checkBST(link h, int min, int max) {
     return checkBST(h->left, min, h->val) && 
            checkBST(h->right, h->val, max);
 }
+
+
+ /* ---------------------------------------------------------------------------------
+ * SEZIONE 9: Mini calcolo combinatorio
+ * --------------------------------------------------------------------------------- */
+
+
+ // PERMUTAZIONI (es. Anagrammi, Cammino Hamiltoniano) L'ordine conta? SÌ. Posso ripetere? NO
+void permuta(int pos, int n, int *sol, int *mark, ... ) {
+    if (pos >= n) { /* Soluzione trovata */ return; }
+
+    for (int i = 0; i < n; i++) {
+        if (mark[i] == 0) { // NON l'ho ancora usato
+            mark[i] = 1;
+            sol[pos] = i; // Prendo l'elemento i
+            permuta(pos + 1, n, sol, mark, ...);
+            mark[i] = 0; // Backtrack
+        }
+    }
+}
+
+
+
+// DISPOSIZIONI (es. Numeri in Base B) L'ordine conta? SÌ. Posso ripetere? SÌ
+void disposizioni(int pos, int cifreDaRiempire, int Base, int *sol) {
+    if (pos >= cifreDaRiempire) { /* Stampo numero */ return; }
+
+    for (int i = 0; i < Base; i++) {
+        // Nessun check su mark! Posso riusare 'i' quante volte voglio
+        sol[pos] = i;
+        disposizioni(pos + 1, cifreDaRiempire, Base, sol);
+    }
+}
+
+// COMBINAZIONI (es. Sottoinsiemi, Subset Sum) L'ordine conta? NO. Posso ripetere? NO
+// start: indice da cui iniziare a pescare nel vettore originale
+void combinazioni(int pos, int start, int n, int *sol, int k) {
+    if (pos >= k) { /* Ho scelto k elementi */ return; }
+
+    for (int i = start; i < n; i++) {
+        sol[pos] = i;
+        // Passo i + 1 alla ricorsione per prendere solo i successivi
+        combinazioni(pos + 1, i + 1, n, sol, k);
+    }
+}
+
+
+// PARTIZIONI (es. Minibus, Assegnamento) Devo dividere TUTTI gli oggetti in GRUPPI?
+// pos: indice del passeggero corrente
+void partizioni(int pos, int n_passeggeri, int k_bus, int *assegnamenti) {
+    if (pos >= n_passeggeri) { /* Tutti assegnati */ return; }
+
+    for (int bus = 0; bus < k_bus; bus++) {
+        assegnamenti[pos] = bus; // Metto passeggero 'pos' sul 'bus'
+        partizioni(pos + 1, n_passeggeri, k_bus, assegnamenti);
+    }
+}
