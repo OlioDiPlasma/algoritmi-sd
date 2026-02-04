@@ -1,5 +1,5 @@
 Parte 1: Giustificazione del Modello e Pruning1.
- Modello Combinatorio Adottato:Il problema si modella come la ricerca di un Cammino Semplice (un percorso che non ripete nodi) su un grafo non orientato.Nodi: Le parole del dizionario.Archi: Esiste un collegamento tra due parole se e solo se differiscono per esattamente un carattere (Distanza di Hamming = 1).Obiettivo: Trovare un cammino da start a end.Vincolo Globale: Una volta raggiunto end, dobbiamo verificare la condizione su $k$ (ogni posizione $i$ della stringa deve aver subito almeno $k$ variazioni lungo tutto il percorso).
+ Modello Combinatorio Adottato: Disposizioni Semplici Il problema si modella come la ricerca di un Cammino Semplice (un percorso che non ripete nodi) su un grafo non orientato.Nodi: Le parole del dizionario.Archi: Esiste un collegamento tra due parole se e solo se differiscono per esattamente un carattere (Distanza di Hamming = 1).Obiettivo: Trovare un cammino da start a end.Vincolo Globale: Una volta raggiunto end, dobbiamo verificare la condizione su $k$ (ogni posizione $i$ della stringa deve aver subito almeno $k$ variazioni lungo tutto il percorso).
 
 2. Criteri di Pruning (Potatura):
 
