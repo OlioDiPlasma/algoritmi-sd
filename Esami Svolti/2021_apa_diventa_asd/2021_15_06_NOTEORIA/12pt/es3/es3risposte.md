@@ -1,5 +1,5 @@
 Analisi 
-Modello Combinatorio:
+Modello Combinatorio: DISPOSIZIONI Semplici senza ripetizioni, ordine conta
 
 Stiamo facendo una ricerca nello spazio degli stati (State Space Search).
 
