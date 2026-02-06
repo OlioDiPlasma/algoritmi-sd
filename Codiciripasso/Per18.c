@@ -1274,3 +1274,21 @@ int minResources(int *start, int *end, int N) {
     free(events);
     return maxOverlap;
 }
+
+// Wrapper e check validità per Dominating Set
+int checkDominating(int *scelte, Graph G) {
+    for (int u = 0; u < G->V; u++) {
+        if (scelte[u]) continue; // Se u è scelto, è coperto
+        
+        int coperto = 0;
+        // Controllo se almeno un vicino è scelto
+        for (link t = G->ladj[u]; t != NULL; t = t->next) {
+            if (scelte[t->v]) { coperto = 1; break; }
+        }
+        if (!coperto) return 0; // Nodo u non coperto
+    }
+    return 1;
+}
+
+// Usa il "Modello Binario" (o Combinazioni Semplici) di Per18.c
+// Ma nella funzione checkValid usa checkDominating.

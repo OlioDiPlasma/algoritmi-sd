@@ -603,3 +603,21 @@ int main() {
 
     return 0;
 }
+
+
+
+// [Gennaio 2026] Conta nodi con valore compreso tra A e B (inclusi)
+int BST_countRange(link h, int A, int B) {
+    if (h == NULL) return 0;
+
+    // Caso 1: Nodo troppo piccolo -> Cerco solo a destra (valori più grandi)
+    if (h->val < A) 
+        return BST_countRange(h->r, A, B);
+
+    // Caso 2: Nodo troppo grande -> Cerco solo a sinistra (valori più piccoli)
+    if (h->val > B) 
+        return BST_countRange(h->l, A, B);
+
+    // Caso 3: Nodo nell'intervallo -> Conto 1 e cerco su entrambi i lati
+    return 1 + BST_countRange(h->l, A, B) + BST_countRange(h->r, A, B);
+}
