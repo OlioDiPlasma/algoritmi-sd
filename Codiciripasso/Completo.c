@@ -1044,3 +1044,233 @@ struct u_node {                 // struct u_node è la scatola
     int val;
     u_link next;                // Qui posso usare u_link perché l'ho dichiarato sopra
 };
+
+
+/* =================================================================================
+ * INTEGRAZIONE "MISSING 2025"
+ * Funzioni specifiche richieste negli appelli Gen/Feb/Set 2025
+ * non presenti nei file standard.
+ * ================================================================================= */
+
+#include <stdlib.h>
+#include <stdio.h>
+
+/* ---------------------------------------------------------------------------------
+ * 1. GRAFI DINAMICI: ENABLE/DISABLE EDGE
+ * Fonte: Appello 27/01/2025 (Domanda 18pt)
+ * Richiesta: Modificare il grafo per ignorare certi archi senza liberare memoria.
+ * --------------------------------------------------------------------------------- */
+
+// MODIFICA alla struct Node (aggiungere campo 'en')
+typedef struct node_en *link;
+struct node_en {
+    int v;      // destinazione
+    int wt;     // peso
+    int en;     // 1 = abilitato, 0 = disabilitato (NUOVO CAMPO)
+    link next;
+};
+
+struct graph_en { int V; int E; link *ladj; };
+
+// Disabilita un arco specifico u -> v
+void GRAPHedgeDisable(struct graph_en *G, int u, int v) {
+    link t;
+    for (t = G->ladj[u]; t != NULL; t = t->next) {
+        if (t->v == v) {
+            t->en = 0; // Disabilito logico
+            // Se grafo non orientato, ricordarsi di disabilitare anche v->u
+            break;
+        }
+    }
+}
+
+// Abilita un arco specifico u -> v
+void GRAPHedgeEnable(struct graph_en *G, int u, int v) {
+    link t;
+    for (t = G->ladj[u]; t != NULL; t = t->next) {
+        if (t->v == v) {
+            t->en = 1; // Riabilito
+            break;
+        }
+    }
+}
+
+// Nella DFS/BFS, ricordarsi di aggiungere il controllo:
+// if (visited[t->v] == 0 && t->en == 1) { ... }
+
+
+/* ---------------------------------------------------------------------------------
+ * 2. BST: DISTANZA TRA DUE NODI (Implementazione Reale)
+ * Fonte: Appello 09/09/2025 (Domanda 12pt)
+ * Logica: Distanza(u, v) = Dist(root, u) + Dist(root, v) - 2 * Dist(root, LCA)
+ * Ma su un BST è più semplice: trovo il punto di divergenza.
+ * --------------------------------------------------------------------------------- */
+
+// Helper: calcola distanza dalla radice 'h' al nodo con valore 'k'
+// Ritorna -1 se non trovato.
+int distFromRoot(struct TreeNode *h, int k) {
+    if (h == NULL) return -1;
+    if (h->val == k) return 0;
+    
+    if (k < h->val) {
+        int d = distFromRoot(h->left, k);
+        return (d == -1) ? -1 : 1 + d;
+    } else {
+        int d = distFromRoot(h->right, k);
+        return (d == -1) ? -1 : 1 + d;
+    }
+}
+
+// Funzione principale richiesta
+int BSTdistReal(struct TreeNode *root, int k1, int k2) {
+    if (root == NULL) return -1; // Albero vuoto
+
+    // CASO 1: Entrambi i nodi sono a SINISTRA della radice corrente
+    if (k1 < root->val && k2 < root->val) 
+        return BSTdistReal(root->left, k1, k2);
+
+    // CASO 2: Entrambi i nodi sono a DESTRA della radice corrente
+    if (k1 > root->val && k2 > root->val) 
+        return BSTdistReal(root->right, k1, k2);
+
+    // CASO 3: DIVERGENZA (Split Point)
+    // Uno è a sx, l'altro a dx (oppure uno è la radice stessa).
+    // Questo nodo 'root' è il Lowest Common Ancestor (LCA).
+    // La distanza è la somma delle distanze da qui ai due nodi.
+    
+    int d1 = distFromRoot(root, k1);
+    int d2 = distFromRoot(root, k2);
+    
+    if (d1 == -1 || d2 == -1) return -1; // Uno dei due non esiste
+    return d1 + d2;
+}
+
+
+/* ---------------------------------------------------------------------------------
+ * 3. GRAFI: AMICI DI AMICI (Visita a livello 2)
+ * Fonte: Appello 09/09/2025 (Domanda 12pt)
+ * Richiesta: Contare quanti nodi sono a distanza esatta 2 da v (e non sono v o vicini diretti).
+ * --------------------------------------------------------------------------------- */
+
+void GRAPHfriendsOfFriends(struct Node** adj, int V, int start) {
+    int *visited = calloc(V, sizeof(int));
+    int count = 0;
+
+    // 1. Marco me stesso
+    visited[start] = 1;
+
+    // 2. Marco gli amici diretti (distanza 1) per non riconteggiarli dopo
+    struct Node *t = adj[start];
+    while(t != NULL) {
+        visited[t->dest] = 1; 
+        t = t->next;
+    }
+
+    // 3. Esploro gli amici degli amici
+    // Itero di nuovo sui vicini diretti
+    t = adj[start];
+    printf("Amici di amici: ");
+    while (t != NULL) {
+        int amico = t->dest;
+        // Guardo i vicini dell'amico
+        struct Node *t2 = adj[amico];
+        while (t2 != NULL) {
+            int amico_di_amico = t2->dest;
+            // Se non l'ho mai visto (non è start, non è amico diretto, non è già contato)
+            if (visited[amico_di_amico] == 0) {
+                printf("%d ", amico_di_amico);
+                count++;
+                visited[amico_di_amico] = 1; // Marco per evitare duplicati
+            }
+            t2 = t2->next;
+        }
+        t = t->next;
+    }
+    printf("\nTotale: %d\n", count);
+    free(visited);
+}
+
+
+/* ---------------------------------------------------------------------------------
+ * 4. TOPOLOGIA: RICONOSCERE ALBERO vs DAG (Source/Sink)
+ * Fonte: Appello 21/02/2025 (Domanda 18pt)
+ * Richiesta: Calcolare in-degree e out-degree per identificare radici e foglie.
+ * --------------------------------------------------------------------------------- */
+
+void analyzeGraphTopology(struct Node** adj, int V) {
+    int *in_degree = calloc(V, sizeof(int));
+    int *out_degree = calloc(V, sizeof(int));
+    int isTree = 1; // Ipotesi iniziale
+
+    // Calcolo gradi
+    for (int u = 0; u < V; u++) {
+        struct Node *t = adj[u];
+        while (t != NULL) {
+            out_degree[u]++;
+            in_degree[t->dest]++;
+            
+            // Un albero (radicato) non può avere nodi con in-degree > 1
+            // Se un nodo ha 2 padri, è un DAG generico, non un albero.
+            if (in_degree[t->dest] > 1) isTree = 0;
+            
+            t = t->next;
+        }
+    }
+
+    printf("Il grafo e' un: %s\n", isTree ? "ALBERO (o Foresta)" : "DAG");
+
+    printf("Sorgenti (Roots): ");
+    for(int i=0; i<V; i++) if(in_degree[i] == 0) printf("%d ", i);
+    
+    printf("\nPozzi (Leaves): ");
+    for(int i=0; i<V; i++) if(out_degree[i] == 0) printf("%d ", i);
+    
+    free(in_degree);
+    free(out_degree);
+}
+
+
+/* ---------------------------------------------------------------------------------
+ * 5. OVERLAP INTERVALLI (Minimo personale/bus necessari)
+ * Fonte: Appello 21/02/2025 (18pt)
+ * Problema: Dato elenco attività (start, end), quante persone servono in parallelo?
+ * Soluzione: Sweep Line Algorithm (Ordinamento eventi).
+ * --------------------------------------------------------------------------------- */
+
+typedef struct { int time; int type; } Event; // type: +1 (start), -1 (end)
+
+// Comparator per qsort: ordina per tempo. Se tempi uguali, PRIMA end (-1) poi start (+1)
+// (Nota: dipende se l'intervallo è [a,b) o [a,b]. Se [a,b], prima start poi end).
+int cmpEvents(const void *a, const void *b) {
+    Event *e1 = (Event *)a;
+    Event *e2 = (Event *)b;
+    if (e1->time != e2->time) return e1->time - e2->time;
+    return e1->type - e2->type; 
+}
+
+int minResources(int *start, int *end, int N) {
+    Event *events = malloc(2 * N * sizeof(Event));
+    
+    for (int i=0; i<N; i++) {
+        events[2*i].time = start[i];
+        events[2*i].type = 1;      // Inizio attività: serve una risorsa in più
+        
+        events[2*i+1].time = end[i];
+        events[2*i+1].type = -1;   // Fine attività: libero una risorsa
+    }
+
+    qsort(events, 2*N, sizeof(Event), cmpEvents);
+
+    int maxOverlap = 0;
+    int currentOverlap = 0;
+
+    for (int i=0; i < 2*N; i++) {
+        currentOverlap += events[i].type;
+        if (currentOverlap > maxOverlap) {
+            maxOverlap = currentOverlap;
+        }
+    }
+
+    free(events);
+    return maxOverlap;
+}
