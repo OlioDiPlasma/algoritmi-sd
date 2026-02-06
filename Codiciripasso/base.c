@@ -364,6 +364,39 @@ void utility_stringhe() {
     int valore = 1990;
     sprintf(buffer, "Anno: %d", valore); // Stampa DENTRO la stringa buffer
 }
+
+// ==========================================
+    // 1. SINGOLO APICE: ' ' -> char
+    // ==========================================
+    // Rappresenta UN solo carattere.
+    // In realtà per il computer è un INTERO piccolo (ASCII).
+    
+    char c = 'A'; 
+    
+    // Essendo un numero, posso farci matematica!
+    // 'A' vale 65.
+    if (c == 65) { printf("Sono uguali!\n"); }
+    
+    char successivo = c + 1; // 65 + 1 = 66 -> 'B'
+    printf("Dopo A viene: %c\n", successivo);
+
+
+    // ==========================================
+    // 2. DOPPIO APICE: " " -> char * (Stringa)
+    // ==========================================
+    // Rappresenta un ARRAY di caratteri che finisce con \0.
+    // È un PUNTATORE alla memoria dove inizia la scritta.
+    
+    char *s = "A"; 
+    
+    // ATTENZIONE: In memoria "A" sono DUE byte:
+    // [ 'A' ] [ \0 ]
+    
+    // NON PUOI fare matematica diretta:
+    // char *x = s + 1; 
+    // Questo NON diventa "B", ma sposta il puntatore avanti di una cella!
+    // Ora x punterebbe al terminatore \0 (stringa vuota).
+
 // ======================================================================================
 // 11
 // ======================================================================================
@@ -435,6 +468,9 @@ typedef int Boolean;
 // Oppure macro per massimo e minimo (utilissime)
 #define MAX(a,b) ((a) > (b) ? (a) : (b))
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
+
+
+
 // ======================================================================================
 // 15
 // ======================================================================================
@@ -622,3 +658,94 @@ int conta_occorrenze(link head, int k) {
     recursive_worker(head, &count, k);
     return count;
 }
+
+// ======================================================================================
+// 22
+// ======================================================================================
+// ======================================================================================
+//STATIC e const
+// ======================================================================================
+
+// ==========================================
+// 1. GLOBALE (Visibile ovunque, vive sempre)
+// ==========================================
+int PUNTEGGIO_TOTALE = 0; // Inizializzata a 0 automaticamente
+
+// ==========================================
+// 2. STATIC FUORI (Privata di questo file)
+// ==========================================
+static int segreto = 99; // Nessun altro file può vedere 'segreto'
+
+// ==========================================
+// 3. STATIC DENTRO (Il contatore persistente)
+// ==========================================
+void conta_chiamate() {
+    // Questa riga viene eseguita SOLO la prima volta!
+    static int contatore = 0; 
+    
+    contatore++;
+    printf("Sono stata chiamata %d volte\n", contatore);
+}
+
+// ==========================================
+// 4. CONST (Il lucchetto)
+// ==========================================
+// Passo il puntatore ma GIURO di non toccare il valore
+void stampa_sicura(const int *ptr) {
+    printf("Valore: %d\n", *ptr);
+    
+    // *ptr = 20; // ERRORE! Il compilatore non compila se scommenti.
+    // ptr = NULL; // Questo posso farlo (cambio dove guardo, non il dato)
+}
+
+int main() {
+    // --- Test Static (Memoria) ---
+    conta_chiamate(); // Stampa 1
+    conta_chiamate(); // Stampa 2 (Si ricorda!)
+    conta_chiamate(); // Stampa 3
+
+    // --- Test Const ---
+    int a = 10;
+    stampa_sicura(&a);
+
+    // --- Test Globale ---
+    PUNTEGGIO_TOTALE += 50; // Funziona
+    printf("Globale: %d\n", PUNTEGGIO_TOTALE);
+
+    return 0;
+}
+
+
+#include <stdio.h>
+
+typedef struct {
+    int contatore;
+    int somma_voti;
+} Statistiche;
+
+void aggiungi_voto(int voto) {
+    // ---------------------------------------------------------
+    // DICHIARAZIONE STATIC:
+    // Questa variabile 's' viene creata SOLO la prima volta.
+    // Dalla seconda volta in poi, il programma si "ricorda"
+    // i valori che c'erano dentro.
+    // Inoltre: contatore e somma_voti partono da 0 da soli!
+    // ---------------------------------------------------------
+    static Statistiche s; 
+
+    s.contatore++;
+    s.somma_voti += voto;
+
+    float media = (float)s.somma_voti / s.contatore;
+    printf("Voto inserito: %d | Media attuale: %.2f (su %d voti)\n", 
+           voto, media, s.contatore);
+}
+
+int main() {
+    aggiungi_voto(18); // s.contatore diventa 1, somma 18
+    aggiungi_voto(30); // s si ricorda! contatore diventa 2, somma 48
+    aggiungi_voto(24); // s si ricorda! contatore diventa 3...
+    
+    return 0;
+}
+
