@@ -264,9 +264,8 @@ void trappole() {
 }
 
 
-
 // ======================================================================================
-// 1. QSORT (L'Arma Segreta)
+// 8. QSORT (L'Arma Segreta)
 // ======================================================================================
 // Se l'esame dice "è consentito utilizzare chiamate a funzioni standard quali ordinamento"
 // NON SCRIVERE IL BUBBLE SORT A MANO! Usa questo.
@@ -297,10 +296,8 @@ void esempio_ordinamento() {
 }
 
 // ======================================================================================
-// 2. MODELLI DI VISITA ALBERI (Impara a memoria!)
+// 9. MODELLI DI VISITA ALBERI (Impara a memoria!)
 // ======================================================================================
-// Se ti chiedono di visitare un albero, usa uno di questi tre schemi.
-// Non inventare cicli strani.
 
 typedef struct tnode {
     int key;
@@ -336,9 +333,12 @@ void post_order(link h) {
     post_order(h->r);
     printf("%d ", h->key); // Elaboro la radice per ultima
 }
+// ======================================================================================
+// 10
+// ======================================================================================
 
 // ======================================================================================
-// 3. CONVERSIONI E RICERCA STRINGHE (Utility)
+//  CONVERSIONI E RICERCA STRINGHE (Utility)
 // ======================================================================================
 
 void utility_stringhe() {
@@ -364,9 +364,11 @@ void utility_stringhe() {
     int valore = 1990;
     sprintf(buffer, "Anno: %d", valore); // Stampa DENTRO la stringa buffer
 }
-
 // ======================================================================================
-// 4. MATEMATICA BASE (Senza impazzire)
+// 11
+// ======================================================================================
+// ======================================================================================
+// MATEMATICA BASE (Senza impazzire)
 // ======================================================================================
 
 void matematica() {
@@ -377,9 +379,11 @@ void matematica() {
     // float p = pow(2, 3); // 2 alla 3a = 8.0
     // float s = sqrt(9);   // Radice quadrata = 3.0
 }
-
 // ======================================================================================
-// 5. SWITCH-CASE (Alternativa ordinata agli if-else infiniti)
+// 12
+// ======================================================================================
+// ======================================================================================
+// SWITCH-CASE (Alternativa ordinata agli if-else infiniti)
 // ======================================================================================
 
 void menu(char scelta) {
@@ -399,9 +403,11 @@ void menu(char scelta) {
             break;
     }
 }
-
 // ======================================================================================
-// 6. TYPEDEF COMPLESSI (Visti nei testi d'esame)
+// 13
+// ======================================================================================
+// ======================================================================================
+// TYPEDEF COMPLESSI (Visti nei testi d'esame)
 // ======================================================================================
 
 // Puntatore a funzione (usato raramente ma se esce fa paura)
@@ -415,9 +421,11 @@ void usa_funzione() {
     fun_ptr f = somma;
     int ris = f(2, 3); // Chiama somma(2,3) -> 5
 }
-
 // ======================================================================================
-// 1. BOOLEANI E MACRO (Se non puoi usare <stdbool.h>)
+// 14
+// ======================================================================================
+// ======================================================================================
+// BOOLEANI E MACRO (Se non puoi usare <stdbool.h>)
 // ======================================================================================
 // Spesso nei vecchi compiti si definisce così:
 typedef int Boolean;
@@ -427,9 +435,11 @@ typedef int Boolean;
 // Oppure macro per massimo e minimo (utilissime)
 #define MAX(a,b) ((a) > (b) ? (a) : (b))
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
-
 // ======================================================================================
-// 2. MODIFICARE PUNTATORI DENTRO FUNZIONI (Il Triplo Salto Mortale)
+// 15
+// ======================================================================================
+// ======================================================================================
+// MODIFICARE PUNTATORI DENTRO FUNZIONI (Il Triplo Salto Mortale)
 // ======================================================================================
 // PROBLEMA: Se passi "head" a una funzione e la modifichi, fuori non cambia.
 // SOLUZIONE: Devi passare l'indirizzo di head (&head), quindi ricevi un doppio puntatore.
@@ -454,9 +464,11 @@ void insert_in_testa(link *hptr, int v) {
 // Esempio di chiamata nel main:
 // link head = NULL;
 // insert_in_testa(&head, 10); // NOTA LA &
-
 // ======================================================================================
-// 3. ALGORITMI LISTE: INSERIMENTO IN CODA (Senza puntatore tail)
+// 16
+// ======================================================================================
+// ======================================================================================
+// ALGORITMI LISTE: INSERIMENTO IN CODA (Senza puntatore tail)
 // ======================================================================================
 // Richiede di scorrere tutto. Se sbagli il while, crasha.
 
@@ -478,9 +490,11 @@ link insert_in_coda(link h, int v) {
     x->next = nuovo;
     return h; // Ritorno sempre la testa originale
 }
-
 // ======================================================================================
-// 4. ALGORITMI LISTE: CANCELLAZIONE (Il pattern prev/curr)
+// 17
+// ======================================================================================
+// ======================================================================================
+// ALGORITMI LISTE: CANCELLAZIONE (Il pattern prev/curr)
 // ======================================================================================
 // Questo è lo snippet da imparare a memoria per rimuovere nodi.
 
@@ -507,9 +521,11 @@ link cancella_nodo(link h, int valore_da_togliere) {
     }
     return h;
 }
-
 // ======================================================================================
-// 5. NAVIGAZIONE GRIGLIE (Matrici come mappe)
+// 18
+// ======================================================================================
+// ======================================================================================
+//  NAVIGAZIONE GRIGLIE (Matrici come mappe)
 // ======================================================================================
 // Tipico esercizio: "Trova il cammino nel labirinto" o "conta le isole".
 // Devi guardare Nord, Sud, Est, Ovest senza uscire dalla matrice.
@@ -532,9 +548,11 @@ void naviga_griglia(int **mat, int R, int C, int r, int c) {
         }
     }
 }
-
 // ======================================================================================
-// 6. INPUT SICURO (Stringhe con spazi)
+// 19
+// ======================================================================================
+// ======================================================================================
+// INPUT SICURO (Stringhe con spazi)
 // ======================================================================================
 // fscanf si ferma allo spazio. gets è vietata. Usa fgets.
 
@@ -548,9 +566,11 @@ void leggi_riga_intera() {
         buffer[strcspn(buffer, "\n")] = 0; 
     }
 }
-
 // ======================================================================================
-// 7. HASH TABLE (Stub basilare)
+// 20
+// ======================================================================================
+// ======================================================================================
+// HASH TABLE (Stub basilare)
 // ======================================================================================
 // Se capita una hash table a liste di trabocco (chaining).
 
@@ -579,9 +599,11 @@ int hash_p(char *v, int M) {
         h = (base * h + *v) % M;
     return h;
 }
-
 // ======================================================================================
-// 8. PATTERN WRAPPER RICORSIVO (Per non impazzire con i parametri)
+// 21
+// ======================================================================================
+// ======================================================================================
+// PATTERN WRAPPER RICORSIVO (Per non impazzire con i parametri)
 // ======================================================================================
 
 // Funzione "Braccio" (quella che fa il lavoro sporco)
