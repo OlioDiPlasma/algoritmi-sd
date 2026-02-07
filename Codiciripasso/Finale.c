@@ -452,21 +452,36 @@ void findDeepest(BSTlink root, int depth, int *maxDepth, BSTlink *bestLeaf) {
     findDeepest(root->r, depth + 1, maxDepth, bestLeaf);
 }
 
-// Stampa percorso a ritroso (Foglia -> Radice)
-int printPath(BSTlink root, char *target) {
-    if (root == NULL) return 0;
+// FOGLIA -> RADICE (Senza array)
+int printUp(link h, int target) {
+    if (h == NULL) return 0;
     
-    if (strcmp(root->key, target) == 0) {
-        printf("%s ", root->key);
+    // Se trovo il target o se un figlio mi dice che l'ha trovato
+    if (h->val == target || printUp(h->l, target) || printUp(h->r, target)) {
+        printf("%d <- ", h->val); // STAMPO DOPO (mentre risalgo)
         return 1;
     }
-    
-    if (printPath(root->l, target) || printPath(root->r, target)) {
-        printf("<- %s ", root->key);
-        return 1;
-    }
-    
     return 0;
+}
+
+// RADICE -> FOGLIA (Serve un vettore)
+void printDown(link h, int target, int *path, int len) {
+    if (h == NULL) return;
+
+    // 1. Mi segno nel taccuino
+    path[len] = h->val;
+
+    // 2. Controllo se sono io il target
+    if (h->val == target) {
+        // Stampo tutto il vettore fin qui
+        for (int i = 0; i <= len; i++) printf("%d -> ", path[i]);
+        printf("TROVATO\n");
+        return;
+    }
+
+    // 3. Scendo portandomi dietro il taccuino aggiornato
+    printDown(h->l, target, path, len + 1);
+    printDown(h->r, target, path, len + 1);
 }
 
 /* -------------------------------------------------------------------------------------
