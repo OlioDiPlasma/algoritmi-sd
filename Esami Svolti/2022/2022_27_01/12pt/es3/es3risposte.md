@@ -3,3 +3,6 @@ L'esercizio chiede di trovare il numero minimo di gruppi di amici. In termini ma
 Il problema è complesso (NP-Hard), quindi useremo la ricorsione con backtracking per esplorare le soluzioni, applicando il Pruning (potatura) per tagliare i rami inutili e velocizzare l'esecuzione.
 
 Il modello combinatorio utilizzato è quello delle Partizioni di un Insieme (Set Partitions): ogni elemento (persona) deve appartenere esattamente a un sottoinsieme (gruppo).
+
+
+Disposizioni con ripetizione circa

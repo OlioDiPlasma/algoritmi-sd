@@ -1,4 +1,8 @@
-1. Scelta del Modello Combinatorio Il modello adottato è quello del Power Set (Insieme delle Parti) esplorato tramite Backtracking (Disposizioni con ripetizione). Per ogni elemento del vettore I, dobbiamo prendere una decisione tra dimS + 1 alternative:
+1. Scelta del Modello Combinatorio Il modello adottato è quello
+ del Power Set (Insieme delle Parti) esplorato tramite Backtracking 
+ (Disposizioni con ripetizione). 
+ 
+ Per ogni elemento del vettore I, dobbiamo prendere una decisione tra dimS + 1 alternative:
 
 Non usarlo (scartarlo).
 

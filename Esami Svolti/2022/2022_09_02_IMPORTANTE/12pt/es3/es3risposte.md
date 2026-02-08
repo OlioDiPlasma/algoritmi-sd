@@ -1,3 +1,7 @@
-1. Modello CombinatorioIl modello utilizzato è l'Insieme delle Parti (Power Set).Dobbiamo esplorare tutti i possibili sottoinsiemi di persone. Dato un insieme di $N$ persone, ogni persona può esserci o non esserci nel gruppo.Struttura dell'albero di ricerca: È un albero binario. Ad ogni livello $i$ (corrispondente alla persona $i$), abbiamo due rami:Includo la persona $i$ nel gruppo corrente.Escludo la persona $i$ dal gruppo corrente.
+1. Modello CombinatorioIl modello utilizzato è l'Insieme delle Parti (Power Set).
+Combinazioni circa
+
+
+Dobbiamo esplorare tutti i possibili sottoinsiemi di persone. Dato un insieme di $N$ persone, ogni persona può esserci o non esserci nel gruppo.Struttura dell'albero di ricerca: È un albero binario. Ad ogni livello $i$ (corrispondente alla persona $i$), abbiamo due rami:Includo la persona $i$ nel gruppo corrente.Escludo la persona $i$ dal gruppo corrente.
 
 2. Criteri di Pruning (Potatura)Utilizziamo un criterio di pruning basato sulla cardinalità (dimensione del gruppo).Logica: Se stiamo esplorando un ramo e la dimensione del gruppo che stiamo costruendo (curr_size), sommata a tutte le persone che ci rimangono ancora da valutare (N - index), è minore o uguale alla dimensione della miglior soluzione trovata finora (best_size), è inutile proseguire.Perché: Anche se prendessimo tutte le persone rimanenti, non riusciremmo a battere il record attuale. Tagliamo il ramo per risparmiare tempo.
