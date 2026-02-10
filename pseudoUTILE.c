@@ -31,3 +31,15 @@ void backtrack(int indice, Stato *stato) {
         }
     }
 }
+
+
+metti_A();
+   -> PAUSA (Chiamo funzione per B)
+      metti_B();
+         -> PAUSA (Chiamo funzione per C)
+            metti_C();
+            ... finisce C ...
+         -> RIPRENDI (Sono in B)
+      togli_B(); // UNDO di B
+   -> RIPRENDI (Sono in A)
+togli_A(); // UNDO di A
