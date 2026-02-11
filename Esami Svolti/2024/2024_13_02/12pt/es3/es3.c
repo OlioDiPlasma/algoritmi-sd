@@ -92,7 +92,7 @@ void solve(char **words, int n, int *used, char *currentString, int currentLen, 
             if (currentLen > 0) {
                 char lastCharOfCurrent = currentString[currentLen - 1];
                 char firstCharOfNext = words[i][0];
-                if (isVowel(lastCharOfCurrent) == isVowel(firstCharOfNext)) {
+                if (isVowel(lastCharOfCurrent) == isVowel(firstCharOfNext)) {  //vb si è dimenticato che aveva la funzione sopra da usare
                     valid = 0; // Pruning: non rispetto l'alternanza V/C
                 }
             }
