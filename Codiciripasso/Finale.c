@@ -623,16 +623,16 @@ int strContains(char *s1, char *s2) {
  * Esami: Maggio 2025
  * ------------------------------------------------------------------------------------- */
 int checkHamiltonian(Graph G, int *path, int n) {
-    if (n != G->V) return 0; // Deve contenere tutti i vertici
+    if (n != G->V) return 0; // Deve contenere tutti i vertici (né più, né meno)
     
     int *visited = calloc(G->V, sizeof(int));
-    
-    // Controlla che sia un cammino valido
+    if (visited == NULL) return 0; // Controllo allocazione (buona norma)
+
     for (int i = 0; i < n - 1; i++) {
         int u = path[i];
         int v = path[i + 1];
         
-        // Verifica che esista arco u -> v
+        // 1. Verifica esistenza arco u -> v
         int found = 0;
         for (Glink t = G->ladj[u]; t != NULL; t = t->next) {
             if (t->v == v) {
@@ -642,17 +642,26 @@ int checkHamiltonian(Graph G, int *path, int n) {
         }
         if (!found) {
             free(visited);
-            return 0;
+            return 0; // Arco mancante
         }
         
-        // Verifica aciclicità (no vertici ripetuti)
+        // 2. Verifica duplicati per il vertice corrente 'u'
         if (visited[u]) {
             free(visited);
-            return 0;
+            return 0; // Vertice ripetuto
         }
         visited[u] = 1;
     }
     
+    // --- FIX: CONTROLLO DELL'ULTIMO VERTICE ---
+    // L'ultimo vertice (path[n-1]) non è mai stato 'u', quindi dobbiamo
+    // controllare ora se era già presente nel cammino.
+    if (visited[path[n-1]]) {
+        free(visited);
+        return 0; // L'ultimo vertice è un duplicato di uno precedente
+    }
+    // ------------------------------------------
+
     free(visited);
     return 1;
 }
