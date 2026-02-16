@@ -714,22 +714,30 @@ int checkAVL(TreeNode* root) {
 
 // B. CONTA NODI IN INTERVALLO [A, B]
 // Sfrutta la proprietà BST per non visitare tutto l'albero.
+// CONSIGLIATA (O(log N + k))
 int BSTcountInRange(TreeNode* root, int A, int B) {
     if (root == NULL) return 0;
 
-    // Caso 1: Il nodo è nell'intervallo -> Conto e vado su entrambi i lati
+    int count = 0;
+
+    // 1. Se il nodo corrente è nell'intervallo, lo conto
     if (root->val >= A && root->val <= B) {
-        return 1 + BSTcountInRange(root->left, A, B) 
-                 + BSTcountInRange(root->right, A, B);
-    }
-    
-    // Caso 2: Il nodo è troppo piccolo (< A) -> Vado solo a destra (per cercare numeri più grandi)
-    if (root->val < A) {
-        return BSTcountInRange(root->right, A, B);
+        count = 1;
     }
 
-    // Caso 3: Il nodo è troppo grande (> B) -> Vado solo a sinistra
-    return BSTcountInRange(root->left, A, B);
+    // 2. Se ha senso andare a sinistra (cioè non sono troppo piccolo), vado
+    //    Tradotto: Vado a sinistra solo se posso trovare numeri >= A
+    if (root->val > A) {
+        count += BSTcountInRange(root->left, A, B);
+    }
+
+    // 3. Se ha senso andare a destra (cioè non sono troppo grande), vado
+    //    Tradotto: Vado a destra solo se posso trovare numeri <= B
+    if (root->val < B) {
+        count += BSTcountInRange(root->right, A, B);
+    }
+
+    return count;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -741,29 +749,38 @@ int BSTcountInRange(TreeNode* root, int A, int B) {
 */
 
 // Verifica se L1 è sottolista di L2
-int isSubList(ListNode* l1, ListNode* l2) {
-    if (l1 == NULL) return 1; // Lista vuota è sempre sottolista
-    if (l2 == NULL) return 0; // L1 non è vuota ma L2 sì
 
-    ListNode *p1 = l1;
-    ListNode *p2 = l2;
-    ListNode *start = l2; // Punto di ripartenza in L2
-
-    while (start != NULL) {
-        p2 = start;
-        p1 = l1;
-        
-        // Provo a matchare L1 partendo da 'start'
-        while (p1 != NULL && p2 != NULL && p1->val == p2->val) {
-            p1 = p1->next;
-            p2 = p2->next;
+// HELPER: Controlla se 'smaller' è un prefisso esatto di 'larger'
+// Ritorna 1 se matchano, 0 se fallisce.
+int checkPrefix(ListNode *smaller, ListNode *larger) {
+    while (smaller != NULL) {
+        // Se larger finisce prima di smaller, o i valori sono diversi -> Fail
+        if (larger == NULL || smaller->val != larger->val) {
+            return 0;
         }
-
-        if (p1 == NULL) return 1; // Ho finito L1 -> Trovata!
-        
-        start = start->next; // Avanzo il punto di partenza
+        smaller = smaller->next;
+        larger = larger->next;
     }
-    return 0;
+    return 1; // Smaller è finito, quindi è contenuto tutto
+}
+
+// FUNZIONE PRINCIPALE
+int isSubList(ListNode *l1, ListNode *l2) {
+    if (l1 == NULL) return 1; // Lista vuota è sempre contenuta
+    
+    // Scorro tutta la lista principale L2
+    while (l2 != NULL) {
+        
+        // Per ogni nodo di L2, chiedo: "L1 comincia qui?"
+        if (l2->val == l1->val) { 
+            // Piccola ottimizzazione: chiamo la funzione pesante solo se il primo numero coincide
+            if (checkPrefix(l1, l2)) return 1;
+        }
+        
+        l2 = l2->next; // Avanzo nella lista principale
+    }
+    
+    return 0; // Mai trovato
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
