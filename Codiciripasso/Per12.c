@@ -526,6 +526,42 @@ void creaMatrice(int ***matrice, int righe, int colonne) {
     }
 }
 
+// Restituisco int** invece di void
+int **creaMatrice(int righe, int colonne) {
+    int **mat = malloc(righe * sizeof(int *)); // Creo locale
+    
+    for (int i = 0; i < righe; i++) {
+        mat[i] = calloc(colonne, sizeof(int));
+    }
+    
+    return mat; // Restituisco l'indirizzo al main
+}
+
+
+
+
+void creaCubo(int ****cubo, int pagine, int righe, int colonne) {
+    // 1. ALLOCO IL VETTORE DELLE PAGINE (La "colonna vertebrale" del cubo)
+    // Qui cubo è int ****, quindi *cubo è int ***
+    // Dentro sizeof metto int ** perché ogni elemento punta a una matrice 2D
+    *cubo = malloc(pagine * sizeof(int **)); 
+
+    for (int i = 0; i < pagine; i++) {
+        
+        // 2. Per ogni pagina, alloco le RIGHE (come facevi prima)
+        (*cubo)[i] = malloc(righe * sizeof(int *));
+        
+        for (int j = 0; j < righe; j++) {
+            
+            // 3. Per ogni riga, alloco le COLONNE (i dati veri)
+            (*cubo)[i][j] = malloc(colonne * sizeof(int));
+        }
+    }
+}
+
+
+
+
 /* ==============================================================================
  * MAIN: IL LABORATORIO
  * ============================================================================== */
