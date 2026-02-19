@@ -844,3 +844,155 @@ void powerset(int *val, int n, int *sol, int pos, int *bestSol, int *bestDiff) {
     sol[pos] = 1;
     powerset(val, n, sol, pos + 1, bestSol, bestDiff);
 }
+
+/* ---------------------------------------------------------------------------------
+ * SEZIONE 10: GRAFI SEMPLICI CON LISTE DI ADIACENZA (12pt)
+ * --------------------------------------------------------------------------------- */
+typedef struct edgeNode *linkEdge;
+struct edgeNode { int v; linkEdge next; };
+struct graph { int V; int E; linkEdge *ladj; };
+typedef struct graph *Graph;
+
+// Pattern A: Verifica cammino su liste di adiacenza (Es: Cammino Hamiltoniano)
+int checkPathListAdj(Graph G, int *path, int n) {
+    for(int i = 0; i < n - 1; i++) {
+        int u = path[i];
+        int v = path[i+1];
+        int found = 0;
+        
+        // Scorro la lista di adiacenza del nodo u
+        for (linkEdge t = G->ladj[u]; t != NULL; t = t->next) {
+            if (t->v == v) { 
+                found = 1; 
+                break; 
+            }
+        }
+        if (!found) return 0; // L'arco (u -> v) non esiste!
+    }
+    return 1;
+}
+
+// Pattern B: Verifica se il grafo è simmetrico (2025)
+int isSymmetric(Graph G) {
+    for (int i = 0; i < G->V; i++) {
+        for (linkEdge t = G->ladj[i]; t != NULL; t = t->next) {
+            int target = t->v;
+            int found_reverse = 0;
+            // Cerco l'arco di ritorno: target -> i
+            for (linkEdge rev = G->ladj[target]; rev != NULL; rev = rev->next) {
+                if (rev->v == i) { found_reverse = 1; break; }
+            }
+            if (!found_reverse) return 0;
+        }
+    }
+    return 1;
+}
+
+
+
+/* ---------------------------------------------------------------------------------
+ * SEZIONE 11: CLONAZIONE (DEEP COPY) ALBERI
+ * --------------------------------------------------------------------------------- */
+// Funzione ricorsiva di clonazione
+link dupTreeRec(link h) {
+    if (h == NULL) return NULL;
+    
+    // 1. Alloco il nuovo nodo
+    link n = malloc(sizeof(struct node));
+    n->val = h->val; 
+    // n->key = strdup(h->key); // (Se la chiave e' stringa dinamica)
+    
+    // 2. Clono figlio SX e DX
+    n->left = dupTreeRec(h->left);
+    n->right = dupTreeRec(h->right);
+    
+    return n;
+}
+
+// Wrapper per la clonazione di un albero
+BST BSTDup(BST b) {
+    BST clone = malloc(sizeof(struct binary_search_tree));
+    clone->size = b->size;
+    clone->root = dupTreeRec(b->root);
+    return clone;
+}
+
+/* ---------------------------------------------------------------------------------
+ * SEZIONE 12: BFS (VISITA A LIVELLI) SU BST
+ * --------------------------------------------------------------------------------- */
+// Raccoglie o visita nodi livello per livello senza usare l'ADT Coda
+void BSTbfsToArray(link root) {
+    if (root == NULL) return;
+    
+    link queue[100]; // Dimensione sufficiente max
+    int head = 0, tail = 0;
+    
+    queue[tail++] = root; // Enqueue radice
+    
+    while (head < tail) {
+        link curr = queue[head++]; // Dequeue
+        
+        printf("%d ", curr->val); // O salvataggio in un array di destinazione
+        
+        // Mette in coda i figli
+        if (curr->left != NULL) queue[tail++] = curr->left;
+        if (curr->right != NULL) queue[tail++] = curr->right;
+    }
+}
+
+
+/* ---------------------------------------------------------------------------------
+ * SEZIONE 13: RE-INSERIMENTO ORDINATO (LISTE)
+ * --------------------------------------------------------------------------------- */
+// Spesso si stacca un nodo e lo si deve rimettere al posto giusto
+void listInsertSorted(link *head, link newNode) {
+    // Caso 1: Lista vuota o inserimento in TESTA
+    if (*head == NULL || (*head)->val >= newNode->val) {
+        newNode->next = *head;
+        *head = newNode;
+        return;
+    }
+    
+    // Caso 2: Ricerca posizione nel CORPO della lista
+    link curr = *head;
+    while (curr->next != NULL && curr->next->val < newNode->val) {
+        curr = curr->next;
+    }
+    
+    // Inserisci newNode tra curr e curr->next
+    newNode->next = curr->next;
+    curr->next = newNode;
+}
+
+/* ---------------------------------------------------------------------------------
+ * SEZIONE 14: RICERCA PAROLE IN MATRICE (Word Search / Crucipuzzle)
+ * --------------------------------------------------------------------------------- */
+// Direzioni: N, NE, E, SE, S, SO, O, NO
+int checkWord2D(char **mat, int R, int C, int r, int c, char *word) {
+    int dr[] = {-1, -1, 0, 1, 1, 1, 0, -1};
+    int dc[] = {0, 1, 1, 1, 0, -1, -1, -1};
+    int len = strlen(word);
+    
+    // Se la prima lettera non combacia, esci
+    if (mat[r][c] != word[0]) return 0;
+    
+    // Prova le 8 direzioni
+    for (int dir = 0; dir < 8; dir++) {
+        int k;
+        int currR = r + dr[dir];
+        int currC = c + dc[dir];
+        
+        for (k = 1; k < len; k++) {
+            // Fuori dai bordi
+            if (currR < 0 || currR >= R || currC < 0 || currC >= C) break;
+            
+            // Carattere non coincidente
+            if (mat[currR][currC] != word[k]) break;
+            
+            currR += dr[dir];
+            currC += dc[dir];
+        }
+        if (k == len) return 1; // Parola trovata interamente in questa direzione!
+    }
+    return 0;
+}
