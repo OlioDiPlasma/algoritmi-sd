@@ -657,3 +657,190 @@ int BST_countRange(link h, int A, int B) {
     // Caso 3: Nodo nell'intervallo -> Conto 1 e cerco su entrambi i lati
     return 1 + BST_countRange(h->l, A, B) + BST_countRange(h->r, A, B);
 }
+
+
+/* ---------------------------------------------------------------------------------
+ * NUOVA SEZIONE: MATRICI (Allocazione ed Esplorazione "Vicini")
+ * --------------------------------------------------------------------------------- */
+
+// PATTERN A: Allocazione dinamica di una matrice R x C
+int** allocaMatrice(int r, int c) {
+    int **m = malloc(r * sizeof(int*));
+    for (int i = 0; i < r; i++) {
+        m[i] = calloc(c, sizeof(int)); // Inizializza a zero
+    }
+    return m;
+}
+
+// PATTERN B: Esplorazione dei vicini (es. per calcolare medie, o controllare bordi)
+void analizzaVicini(int **M, int r, int c, int i, int j) {
+    for (int dx = -1; dx <= 1; dx++) {
+        for (int dy = -1; dy <= 1; dy++) {
+            if (dx == 0 && dy == 0) continue; // Salto la cella centrale [i][j]
+            
+            int nx = i + dx;
+            int ny = j + dy;
+            
+            // Controllo limiti di bordo
+            if (nx >= 0 && nx < r && ny >= 0 && ny < c) {
+                // Fai qualcosa con M[nx][ny]
+            }
+        }
+    }
+}
+
+
+/* ---------------------------------------------------------------------------------
+ * NUOVA SEZIONE: ALBERI N-ARI
+ * --------------------------------------------------------------------------------- */
+#define GRADO 3 // Può variare in base al testo dell'esame
+
+struct n_node {
+    int val;
+    struct n_node *children[GRADO];
+    int n_child; // Numero effettivo di figli (opzionale)
+};
+
+// Visita DFS di base su albero N-ario
+void ntree_dfs(struct n_node *root, int *counter) {
+    if (root == NULL) return;
+    
+    // Esempio: conta i nodi (o controlla il grado, ecc.)
+    (*counter)++;
+    
+    // Chiamata ricorsiva sui figli
+    for (int i = 0; i < GRADO; i++) {
+        if (root->children[i] != NULL) {
+            ntree_dfs(root->children[i], counter);
+        }
+    }
+}
+
+/* ---------------------------------------------------------------------------------
+ * PATTERN AGGIUNTIVO BST: VERIFICA PROPRIETA' BST (2025, 2022)
+ * --------------------------------------------------------------------------------- */
+int isBSTUtil(link node, int min, int max) {
+    if (node == NULL) return 1;
+    
+    // Controlla che il nodo violi i limiti correnti
+    if (node->val < min || node->val > max) return 0;
+    
+    // Sulla SX il max scende, sulla DX il min sale.
+    return isBSTUtil(node->left, min, node->val - 1) &&
+           isBSTUtil(node->right, node->val + 1, max);
+}
+
+int checkIsBST(BST tree) {
+    // Usa costanti climatiche (o INT_MIN / INT_MAX di <limits.h>)
+    return isBSTUtil(tree->root, -99999, 99999);
+}
+
+
+/* ---------------------------------------------------------------------------------
+ * PATTERN AGGIUNTIVO LISTE: Duplicati Consecutivi e Riorganizzazione
+ * --------------------------------------------------------------------------------- */
+ 
+// Rimozione duplicati consecutivi (mantenendo il primo) - Uscito nel 2023
+void removeConsecutiveDuplicates(link head) {
+    link curr = head;
+    while (curr != NULL && curr->next != NULL) {
+        if (curr->val == curr->next->val) {
+            link temp = curr->next;
+            curr->next = curr->next->next;
+            free(temp); // Libera nodo se non serve (valuta caso stringhe)
+        } else {
+            curr = curr->next;
+        }
+    }
+}
+
+// Estrarre un nodo e reinserirlo ordinato (es. dopo aver cambiato chiave - Feb 2025)
+int listDoubleItem(link *head, int target) {
+    link curr = *head, prev = NULL;
+    
+    // 1. Cerca ed estrai
+    while (curr != NULL && curr->val != target) {
+        prev = curr;
+        curr = curr->next;
+    }
+    if (curr == NULL) return 0; // Target non trovato
+    
+    if (prev == NULL) *head = curr->next;
+    else prev->next = curr->next;
+    
+    // 2. Modifica 
+    curr->val = curr->val * 2;
+    
+    // 3. Reinserisci al posto giusto (inserimento in lista ordinata)
+    link p = *head, p_prev = NULL;
+    while (p != NULL && p->val < curr->val) {
+        p_prev = p;
+        p = p->next;
+    }
+    if (p_prev == NULL) {
+        curr->next = *head;
+        *head = curr;
+    } else {
+        curr->next = p;
+        p_prev->next = curr;
+    }
+    return 1;
+}
+
+/* ---------------------------------------------------------------------------------
+ * NUOVA SEZIONE: BACKTRACKING E COMBINATORIA BASE
+ * --------------------------------------------------------------------------------- */
+
+// PATTERN A: Ricorsione su Griglia / Percorso minimo (Luglio 2024)
+void minPathRec(char **area, int r, int c, int x, int y, int x1, int y1, int **visited, int dist, int *minDist) {
+    // Caso terminale: sono arrivato a (x1, y1)
+    if (x == x1 && y == y1) {
+        if (dist < *minDist) *minDist = dist;
+        return;
+    }
+    
+    visited[x][y] = 1;
+    int dx[] = {-1, 1, 0, 0};
+    int dy[] = {0, 0, -1, 1};
+    
+    // Provo le 4 direzioni (Nord, Sud, Ovest, Est)
+    for (int i = 0; i < 4; i++) {
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+        
+        // Verifica confini e che la cella sia calpestabile ('0') e non ancora visitata
+        if (nx >= 0 && nx < r && ny >= 0 && ny < c && area[nx][ny] == '0' && !visited[nx][ny]) {
+            minPathRec(area, r, c, nx, ny, x1, y1, visited, dist + 1, minDist);
+        }
+    }
+    visited[x][y] = 0; // Backtrack
+}
+
+// PATTERN B: Powerset con Vettore Booleano (Subset Sum / Best Split 2025)
+// Spesso utilizzato per selezionare sotto-insiemi con un vincolo ottimizante
+void powerset(int *val, int n, int *sol, int pos, int *bestSol, int *bestDiff) {
+    if (pos >= n) {
+        // Valuta soluzione attuale (es. calcola differenza somme per partizione ottima)
+        int sum1 = 0, sum2 = 0;
+        for (int i = 0; i < n; i++) {
+            if (sol[i] == 1) sum1 += val[i];
+            else sum2 += val[i];
+        }
+        int diff = abs(sum1 - sum2);
+        
+        // Aggiorna soluzione migliore
+        if (diff < *bestDiff) {
+            *bestDiff = diff;
+            for (int i = 0; i < n; i++) bestSol[i] = sol[i];
+        }
+        return;
+    }
+    
+    // Ramo: non seleziono l'elemento
+    sol[pos] = 0;
+    powerset(val, n, sol, pos + 1, bestSol, bestDiff);
+    
+    // Ramo: seleziono l'elemento
+    sol[pos] = 1;
+    powerset(val, n, sol, pos + 1, bestSol, bestDiff);
+}
