@@ -1062,6 +1062,9 @@ link buildBTfromHeap(HEAP h, int i) {
     return root;
 }
 
+/* ---------------------------------------------------------------------------------
+ * extra
+ * --------------------------------------------------------------------------------- */
 // PATTERN C: COSTRUZIONE VETTORE DIFFERENZA (Elementi in A ma non in B)
 int *diffVett(int *A, int nA, int *B, int nB, int *nC) {
     int *C = malloc(nA * sizeof(int)); // Alloco il caso peggiore (tutti in A)
