@@ -1036,43 +1036,6 @@ int checkPathAdjacencyList(Graph G, int *path, int k) {
 }
 
 /* ---------------------------------------------------------------------------------
- * GRAFI CON LISTE DI ADIACENZA (ADT Graph)
- * --------------------------------------------------------------------------------- */
-typedef struct edge { int v; int w; int wt; } Edge;
-typedef struct graph_node *graph_link;
-
-struct graph_node { 
-    int v; 
-    int wt; 
-    graph_link next; 
-};
-
-struct graph { 
-    int V; 
-    int E; 
-    graph_link *ladj; // Vettore di liste di adiacenza
-};
-typedef struct graph *Graph;
-
-// Pattern: Verifica se un arco esiste (utile per cammini o grafi simmetrici)
-int edgeExists(Graph G, int u, int v) {
-    for (graph_link t = G->ladj[u]; t != NULL; t = t->next) {
-        if (t->v == v) return 1;
-    }
-    return 0;
-}
-
-// Pattern: Verifica se una sequenza è un cammino valido su lista di adiacenze
-int checkPathAdjacencyList(Graph G, int *path, int k) {
-    for (int i = 0; i < k - 1; i++) {
-        if (!edgeExists(G, path[i], path[i+1])) {
-            return 0; // Arco mancante, cammino interrotto
-        }
-    }
-    return 1;
-}
-
-/* ---------------------------------------------------------------------------------
  * HEAP (Code a Priorità)
  * --------------------------------------------------------------------------------- */
 struct heap {
@@ -1150,4 +1113,62 @@ void moveNodeSorted(link *head, link target, link targetPrev) {
     target->next = curr;
     if (prev == NULL) *head = target;
     else prev->next = target;
+}
+
+
+/* ---------------------------------------------------------------------------------
+Symbol Table / Hash Table
+ * --------------------------------------------------------------------------------- */
+typedef struct STnode *link;
+
+struct STnode {
+    char *key;      // La chiave (es: nome di un vertice o codice fiscale)
+    int value;      // Il dato associato
+    link next;      // Puntatore per gestire le collisioni (lista)
+};
+
+struct symboltable {
+    link *heads;    // Vettore di puntatori (le teste delle liste)
+    int M;          // Dimensione della tabella
+};
+
+typedef struct symboltable *ST;
+
+int hash(char *v, int M) {
+    int h = 0, base = 127;
+    for ( ; *v != '\0'; v++)
+        h = (base * h + *v) % M;
+    return h;
+}
+
+ST STinit(int M) {
+    ST st = malloc(sizeof(*st));
+    st->M = M;
+    // Creiamo il vettore di teste e puliamolo con calloc (tutte a NULL)
+    st->heads = calloc(M, sizeof(link));
+    return st;
+}
+
+void STinsert(ST st, char *key, int val) {
+    int i = hash(key, st->M); // Trovo l'indice
+    
+    // Creo il nuovo nodo
+    link x = malloc(sizeof(*x));
+    x->key = strdup(key); // Copia sicura della stringa
+    x->value = val;
+    
+    // Inserimento in testa alla lista i-esima
+    x->next = st->heads[i];
+    st->heads[i] = x;
+}
+
+int STsearch(ST st, char *key) {
+    int i = hash(key, st->M); // Vado dritto al cassetto giusto
+    
+    // Scorro la piccola lista in quel cassetto
+    for (link x = st->heads[i]; x != NULL; x = x->next) {
+        if (strcmp(x->key, key) == 0) 
+            return x->value; // Trovato!
+    }
+    return -1; // Non presente
 }
