@@ -996,3 +996,157 @@ int checkWord2D(char **mat, int R, int C, int r, int c, char *word) {
     }
     return 0;
 }
+
+/* ---------------------------------------------------------------------------------
+ * GRAFI CON LISTE DI ADIACENZA (ADT Graph)
+ * --------------------------------------------------------------------------------- */
+typedef struct edge { int v; int w; int wt; } Edge;
+typedef struct graph_node *graph_link;
+
+struct graph_node { 
+    int v; 
+    int wt; 
+    graph_link next; 
+};
+
+struct graph { 
+    int V; 
+    int E; 
+    graph_link *ladj; // Vettore di liste di adiacenza
+};
+typedef struct graph *Graph;
+
+// Pattern: Verifica se un arco esiste (utile per cammini o grafi simmetrici)
+int edgeExists(Graph G, int u, int v) {
+    for (graph_link t = G->ladj[u]; t != NULL; t = t->next) {
+        if (t->v == v) return 1;
+    }
+    return 0;
+}
+
+// Pattern: Verifica se una sequenza è un cammino valido su lista di adiacenze
+int checkPathAdjacencyList(Graph G, int *path, int k) {
+    for (int i = 0; i < k - 1; i++) {
+        if (!edgeExists(G, path[i], path[i+1])) {
+            return 0; // Arco mancante, cammino interrotto
+        }
+    }
+    return 1;
+}
+
+/* ---------------------------------------------------------------------------------
+ * GRAFI CON LISTE DI ADIACENZA (ADT Graph)
+ * --------------------------------------------------------------------------------- */
+typedef struct edge { int v; int w; int wt; } Edge;
+typedef struct graph_node *graph_link;
+
+struct graph_node { 
+    int v; 
+    int wt; 
+    graph_link next; 
+};
+
+struct graph { 
+    int V; 
+    int E; 
+    graph_link *ladj; // Vettore di liste di adiacenza
+};
+typedef struct graph *Graph;
+
+// Pattern: Verifica se un arco esiste (utile per cammini o grafi simmetrici)
+int edgeExists(Graph G, int u, int v) {
+    for (graph_link t = G->ladj[u]; t != NULL; t = t->next) {
+        if (t->v == v) return 1;
+    }
+    return 0;
+}
+
+// Pattern: Verifica se una sequenza è un cammino valido su lista di adiacenze
+int checkPathAdjacencyList(Graph G, int *path, int k) {
+    for (int i = 0; i < k - 1; i++) {
+        if (!edgeExists(G, path[i], path[i+1])) {
+            return 0; // Arco mancante, cammino interrotto
+        }
+    }
+    return 1;
+}
+
+/* ---------------------------------------------------------------------------------
+ * HEAP (Code a Priorità)
+ * --------------------------------------------------------------------------------- */
+struct heap {
+    Item *A;        // Vettore che implementa lo heap
+    int heapsize;   // Numero di elementi attuali
+};
+typedef struct heap *HEAP;
+
+// Funzioni di navigazione array-tree
+int LEFT(int i) { return 2 * i + 1; }
+int RIGHT(int i) { return 2 * i + 2; }
+int PARENT(int i) { return (i - 1) / 2; }
+
+// Pattern: Ricostruire un Albero Binario (BT) partendo dall'array dell'HEAP
+link buildBTfromHeap(HEAP h, int i) {
+    if (i >= h->heapsize) return NULL; // Fuori dai limiti
+    
+    link root = malloc(sizeof(struct node));
+    root->item = h->A[i];
+    
+    root->l = buildBTfromHeap(h, LEFT(i));
+    root->r = buildBTfromHeap(h, RIGHT(i));
+    
+    return root;
+}
+
+// PATTERN C: COSTRUZIONE VETTORE DIFFERENZA (Elementi in A ma non in B)
+int *diffVett(int *A, int nA, int *B, int nB, int *nC) {
+    int *C = malloc(nA * sizeof(int)); // Alloco il caso peggiore (tutti in A)
+    int i = 0, j = 0, k = 0;
+    
+    while (i < nA && j < nB) {
+        if (A[i] < B[j]) { 
+            C[k++] = A[i++]; // Elemento in A ma non in B: lo aggiungo!
+        } 
+        else if (A[i] > B[j]) { 
+            j++; // Avanzo solo in B
+        } 
+        else { 
+            // Elemento in comune: lo salto
+            i++; 
+            j++; 
+        }
+    }
+    // Svuoto i rimanenti di A
+    while (i < nA) { 
+        C[k++] = A[i++]; 
+    }
+    
+    *nC = k; // Salvo la dimensione effettiva nel puntatore di uscita
+    C = realloc(C, k * sizeof(int)); // (Opzionale ma pulito) Ridimensiono la memoria strettamente necessaria
+    return C;
+}
+
+// PATTERN C: SPOSTAMENTO/RIPOSIZIONAMENTO DI UN NODO
+// Estrae il nodo "target" dai suoi vicini e lo reinserisce preservando l'ordinamento
+void moveNodeSorted(link *head, link target, link targetPrev) {
+    if (target == NULL) return;
+
+    // 1. Slaccia il nodo target dalla lista (senza liberare memoria)
+    if (targetPrev == NULL) *head = target->next;
+    else targetPrev->next = target->next;
+
+    // 2. Modifica il valore del nodo (Es: raddoppia come nell'esame 2025)
+    target->val = target->val * 2; 
+
+    // 3. Reinserisci in modo ordinato il nodo "target"
+    link curr = *head, prev = NULL;
+    while (curr != NULL && curr->val < target->val) {
+        prev = curr;
+        curr = curr->next;
+    }
+    
+    // Ricollega il target
+    target->next = curr;
+    if (prev == NULL) *head = target;
+    else prev->next = target;
+}
