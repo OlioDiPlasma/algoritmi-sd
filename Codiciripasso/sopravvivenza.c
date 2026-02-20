@@ -1,3 +1,70 @@
+/////////////////////////////////////////// SCORRIMENTO
+
+
+for (int i = 0; stringa[i] != '\0'; i++) {
+    // Leggo stringa[i]
+}
+
+for (int i = 0; i < N; i++) {
+    // Leggo vettore[i]
+}
+
+for (int r = 0; r < NUM_RIGHE; r++) {
+    for (int c = 0; c < NUM_COLONNE; c++) {
+        // Leggo matrice[r][c]
+    }
+}
+
+for (link x = head; x != NULL; x = x->next) {
+    // Il nodo attuale è 'x'.
+    // Leggo il dato con x->val
+}
+
+void visitaAlbero(link h) {
+    if (h == NULL) return; // Caso base: ramo vuoto
+    
+    visitaAlbero(h->l);         // 1. Scendo a sinistra
+    printf("%d ", h->val);      // 2. Faccio qualcosa col nodo attuale
+    visitaAlbero(h->r);         // 3. Scendo a destra
+}
+
+for (linkEdge t = G->ladj[u]; t != NULL; t = t->next) {
+    int vicino = t->v; // t->v contiene il numero del nodo vicino!
+    // Faccio qualcosa con 'vicino'
+}
+
+for (int v = 0; v < G->V; v++) {
+    if (G->adj[u][v] != 0) { // Se è != 0, l'arco esiste!
+        int vicino = v;
+        // Faccio qualcosa con 'vicino'
+    }
+}
+
+// Avanzare in un array circolare di dimensione N
+tail = (tail + 1) % N; // Se tail arriva a N, torna magicamente a 0!
+
+// M è la grandezza dell'array (il numero di cassetti)
+for (int i = 0; i < M; i++) {
+    
+    // Per ogni cassetto, scorro la sua lista concatenata
+    for (link x = st->heads[i]; x != NULL; x = x->next) {
+        // Leggo x->val
+    }
+}
+
+// V è il numero totale di nodi
+for (int i = 0; i < G->V; i++) {
+    
+    // Se questo nodo non l'ho ancora visitato...
+    if (visited[i] == 0) {
+        
+        // ...faccio partire una nuova esplorazione da qui!
+        // Ogni volta che entra in questo IF, hai trovato una nuova "isola" (Componente Connessa)
+        DFS(G, i, visited); 
+    }
+}
+
+
 //////////////// LISTA
 // --- 1. IL MATTONE (Il nodo nascosto) ---
 typedef struct listNode *link;
