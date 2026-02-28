@@ -1,0 +1,23 @@
+1  C
+2  C
+6  C
+8  C
+F  C
+R  C
+
+1  Q
+4  Q
+8  Q 
+F  Q
+D  Q
+
+4  F
+F  F
+D  F
+R  F
+
+1  P
+4  P
+F  P
+D  P
+R  P
